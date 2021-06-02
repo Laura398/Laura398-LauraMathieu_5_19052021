@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="shortcut icon" type="image/png" href="img/favicon.png">
 
+    <script src="https://kit.fontawesome.com/f8ffac71bf.js" crossorigin="anonymous"></script>
+
 	<script src="" defer></script>
 
 <!--Bootstrap-->
@@ -21,7 +23,7 @@
 
 <body>
 
-<div class="container">
+<div class="container bg-light p-2">
     
     <header>
 
@@ -34,11 +36,11 @@
             </button>
             
             <div class="collapse navbar-collapse my-2 my-lg-0" id="navbarTogglerDemo02">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
-                <li class="nav-item active">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active m-3">
                     <a class="nav-link" href="index.html" title="Lien vers l'index">Accueil<span class="sr-only"></span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item m-3">
                     <a class="nav-link" href="cart.html" title="Lien vers le panier">Panier</a>
                 </li>
                 </ul>
@@ -53,12 +55,12 @@
         <section>
             <div class="row">
                 <div class="col">
-                    <div class="card bg-dark text-white rounded-0 border-0">
-                        <img class="card-img" src="img/teddy_5.jpg" alt="Card image">
-                        <div class="card-img-overlay">
-                          <h1 class="card-title text-dark h5">Bienvenue sur Oriteddy !</h1>
-                        </div>
-                    </div>
+                        <figure class="figure bg-light">
+                            <img class="figure-img img-fluid" src="img/teddy_5.jpg" alt="Image de fond">
+                            <figcaption class="bg-light text-dark h1 m-0">
+                                Bienvenue sur Oriteddy !
+                            </figcaption>
+                        </figure>
                 </div>
             </div>
         </section>
@@ -69,7 +71,7 @@
                     <div class="card text-center bg-light m-4">
                         <figure><img class="card-img-top" src="../backend/images/teddy_1.jpg" alt="Card image cap">
                             <figcaption class="card-body">
-                            <h2 class="card-title h5">Norbert</h5>
+                            <h2 class="card-title h5">Norbert</h2>
                             <p class="card-text">29,00€</p>
                             <a href="#" class="btn btn-primary">Voir plus</a>
                             </figcaption>
@@ -78,10 +80,10 @@
                 </div>
                 <div class="col-12 col-lg-4">
                     <div class="card text-center bg-light m-4">
-                        <figure><img class="card-img-top" src="../backend/images/teddy_1.jpg" alt="Card image cap">
+                        <figure><img class="card-img-top" src="../backend/images/teddy_2.jpg" alt="Card image cap">
                             <figcaption class="card-body">
-                            <h2 class="card-title h5">Norbert</h5>
-                            <p class="card-text">29,00€</p>
+                            <h2 class="card-title h5">Arnold</h2>
+                            <p class="card-text">39,00€</p>
                             <a href="#" class="btn btn-primary">Voir plus</a>
                             </figcaption>
                         </figure>
@@ -89,10 +91,10 @@
                 </div>
                 <div class="col-12 col-lg-4">
                     <div class="card text-center bg-light m-4">
-                        <figure><img class="card-img-top" src="../backend/images/teddy_1.jpg" alt="Card image cap">
+                        <figure><img class="card-img-top" src="../backend/images/teddy_3.jpg" alt="Card image cap">
                             <figcaption class="card-body">
-                            <h2 class="card-title h5">Norbert</h5>
-                            <p class="card-text">29,00€</p>
+                            <h2 class="card-title h5">Lenny and Carl</h2>
+                            <p class="card-text">59,00€</p>
                             <a href="#" class="btn btn-primary">Voir plus</a>
                             </figcaption>
                         </figure>
@@ -100,10 +102,10 @@
                 </div>
                 <div class="col-12 col-lg-4">
                     <div class="card text-center bg-light m-4">
-                        <figure><img class="card-img-top" src="../backend/images/teddy_1.jpg" alt="Card image cap">
+                        <figure><img class="card-img-top" src="../backend/images/teddy_4.jpg" alt="Card image cap">
                             <figcaption class="card-body">
-                            <h2 class="card-title h5">Norbert</h5>
-                            <p class="card-text">29,00€</p>
+                            <h2 class="card-title h5">Gustav</h2>
+                            <p class="card-text">45,00€</p>
                             <a href="#" class="btn btn-primary">Voir plus</a>
                             </figcaption>
                         </figure>
@@ -111,10 +113,10 @@
                 </div>
                 <div class="col-12 col-lg-4">
                     <div class="card text-center bg-light m-4">
-                        <figure><img class="card-img-top" src="../backend/images/teddy_1.jpg" alt="Card image cap">
+                        <figure><img class="card-img-top" src="../backend/images/teddy_5.jpg" alt="Card image cap">
                             <figcaption class="card-body">
-                            <h2 class="card-title h5">Norbert</h5>
-                            <p class="card-text">29,00€</p>
+                            <h2 class="card-title h5">Garfunkel</h2>
+                            <p class="card-text">55,00€</p>
                             <a href="#" class="btn btn-primary">Voir plus</a>
                             </figcaption>
                         </figure>
@@ -125,13 +127,67 @@
 
     </main>
 
-    <footer>
-        <div class="row">
-            <div class="col">
-                FOOTER
-            </div>
+    <footer class="bg-light text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+          <!-- Section: Social media -->
+          <section class="mb-4">
+            <!-- Facebook -->
+            <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #3b5998;"
+              href="#!"
+              role="button"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+      
+            <!-- Twitter -->
+            <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #55acee;"
+              href="#!"
+              role="button"
+              ><i class="fab fa-twitter"></i
+            ></a>
+      
+            <!-- Google -->
+            <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #dd4b39;"
+              href="#!"
+              role="button"
+              ><i class="fab fa-google"></i
+            ></a>
+      
+            <!-- Instagram -->
+            <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #ac2bac;"
+              href="#!"
+              role="button"
+              ><i class="fab fa-instagram"></i
+            ></a>
+      
+            <!-- Linkedin -->
+            <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #0082ca;"
+              href="#!"
+              role="button"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+          </section>
+          <!-- Section: Social media -->
         </div>
-    </footer>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-3 text-dark" style="background-color: #F3E9F1;">
+          © 2021 Copyright:
+          <a class="text-dark" href="https://mdbootstrap.com/">Orinoco</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
 
 </div>
 
