@@ -11,7 +11,11 @@
 
     <script src="https://kit.fontawesome.com/f8ffac71bf.js" crossorigin="anonymous"></script>
 
-    <script src="js/listeproduits.js" defer></script>
+    <script src="../backend/controllers/teddy.js" defer></script>
+    <script src="../backend/models/Teddy.js" defer></script>
+    <script src="../backend/routes/teddy.js" defer></script>
+    <script src="js/card.js" defer></script>
+    <script src="js/index.js" defer></script>
 
 <!--Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -58,7 +62,7 @@
                         <figure class="figure bg-light">
                             <img class="figure-img img-fluid" src="img/teddy_5.jpg" alt="Image de fond">
                             <figcaption class="bg-light text-dark h1 m-0 text-center">
-                                <h2>Bienvenue sur Oriteddy !</h2>
+                                <h2>Bienvenue sur OriTeddy !</h2>
                             </figcaption>
                         </figure>
                 </div>
@@ -71,15 +75,8 @@
                     <h2 class="text-center my-4" id="message"></h2>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 col-lg-4">
-                    <div class="card text-center bg-light m-4" id="card">
-                        <h1 id="card" class="text-center"></h1>
-                    </div>
-                    <div id="card-content" class="row justify-content-center">
-                    </div>
-                    </div>
-                </div>
+            <div class="cards">
+                
             </div>
         </section>
 
