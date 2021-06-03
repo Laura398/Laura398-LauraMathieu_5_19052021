@@ -52,11 +52,12 @@ async function getTeddies() { /* Permet de récupérer les éléments sur le ser
                                                               <figcaption class="card-body">
                                                               <h2 class="card-title h5">${card.name}</h2>
                                                               <p class="card-text">${(parseInt(card.price, 10) / 100)  + ",00 €"}</p>
-                                                              <a href="products.html" class="btn btn-primary">Voir plus</a>
+                                                              <a href="../products.html" class="btn btn-primary">Voir plus</a>
                                                               </figcaption>
                                                             </figure>
                                                           </div>
                                                         </div>` /*Ajout du code pour les cartes*/
       }
+      
     });
     
