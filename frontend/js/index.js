@@ -20,11 +20,11 @@ fetch(url)
 
 async function getTeddies() { /* Permet de récupérer les éléments sur le serveur, récupère tous les elements ou affiche l'erreur*/
         const url = 'http://localhost:3000/api/teddies/';
-        const message = document.getElementById("message-index"); /* création de l'élément message*/
+        const message = document.getElementById("message"); /* création de l'élément message*/
         
         try {
             const response = await fetch(url);
-            message.textContent = "Nos produits OriTeddy";
+            message.textContent = "Choisissez votre Teddy";
             return await response.json(); /*return response : récupération des produits et affichage*/
         } catch (error) {
             message.textContent = "Erreur de connexion";
