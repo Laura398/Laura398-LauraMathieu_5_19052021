@@ -6,3 +6,9 @@ class Card{
     }
 
 }
+
+class Color{
+    constructor(jsonColors){ /*Récupérationdes fiches prodiut au format json*/
+        jsonColors && Object.assign(this, jsonColors);
+    }
+}
