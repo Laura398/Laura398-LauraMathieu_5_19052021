@@ -1,29 +1,14 @@
 
-
 /*Récupération de l'API*/
 const id = JSON.parse(localStorage.getItem("article_id"));
 const urlId = "http://localhost:3000/api/teddies/" + id;
 
-async function getTeddy() {  /**** @param : récupération de l'id créée en page listeproduit var1*/
-    const message = document.getElementById('product-info');
-    try {
-        const url = await getId();
-        /*@return response : récupération des détail d'un produit et affichage*/
-        const response = await fetch(url);
-        const data = await response.json()
-        return data;
-    } catch (error) {/* ou @return response : erreur de connexion*/
-        console.error("erreur de connexion à l'api : " + error);
-        message.textContent = "Oops erreur de connexion :/";
-        return;
-    }
-}
 
 /*Afficher les cartes*/
-
 fetch(url)
   .then( data => data.json()) /*Récupération de données brutes -> transformation au format json*/
   .then( jsonListTeddies => { /*Résultat du fetch inséeé dans jsonListTeddies*/
+
     
     try{
       for(let jsonTeddies of jsonListTeddies){
@@ -34,16 +19,19 @@ fetch(url)
               <h1 class="display-5 fw-bolder">${card.name}</h1>
               <div class="fs-5 mb-5">
                   <span class="text-decoration-line-through">${(parseInt(card.price, 10) / 100)  + ",00 €"}</span><br />
-                  <span id="colors">Couleurs :</span>
 
                   <div id="colors">
-                    <button type="button" class="btn btn-outline-light text-dark border-dark" >${card.colors[0]}</button>
-                    <button type="button" class="btn btn-outline-light text-dark border-dark" >${card.colors[1]}</button>
-                    <button type="button" class="btn btn-outline-light text-dark border-dark" >${card.colors[2]}</button>
-                    <button type="button" class="btn btn-outline-light text-dark border-dark" >${card.colors[3]}</button>
+
+                    <select class="custom-select mr-sm-2 my-2" id="inlineFormCustomSelect">
+                        <option selected>Choisis la couleur...</option>
+                        <option value="1">${card.colors[0]}</option>
+                        <option value="2">${card.colors[1]}</option>
+                        <option value="3">${card.colors[2]}</option>
+                        <option value="3">${card.colors[3]}</option>
+                    </select>
+
                   </div>
 
-              </div>
               <p class="lead">${card.description}</p>
               <div class="d-flex mb-5">
                   <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
@@ -59,6 +47,8 @@ fetch(url)
   }
 
 });
+
+
 
 
 function selectColor() { // creer un liens sur chaque element pour se rendre a la page du détail du produit et stocke l'id //
