@@ -30,3 +30,17 @@ fetch(url)
   }
 
 });
+
+function selectLink() { // creer un liens sur chaque element pour se rendre a la page du détail du produit et stocke l'id //
+  /**** @param var9: tag name le nom d'un élément qui permettra de se rendre sur la page du détail du produit */
+      const links = document.querySelectorAll('a.btn');
+      for (let link of links) {
+        let card = new Card(jsonTeddies);
+          link.addEventListener('click', function (e) {
+              /**** C'est une DOMString contenant le nom de la clé que l'on souhaite créer et qui nous sera appelée sur la page produit*/
+              localStorage.setItem("article_id", JSON.stringify(e.target.id));
+              /**** paramétrage de mon lien */
+              link.setAttribute("href", "produit.html" + card._id);
+          })
+      }
+  }

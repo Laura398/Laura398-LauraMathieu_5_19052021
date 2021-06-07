@@ -1,14 +1,13 @@
 
 /*Récupération de l'API*/
 const id = JSON.parse(localStorage.getItem("article_id"));
-const urlId = "http://localhost:3000/api/teddies/" + id;
+const urlId = "http://localhost:3000/api/teddies/:_id";
 
-
+  
 /*Afficher les cartes*/
 fetch(url)
   .then( data => data.json()) /*Récupération de données brutes -> transformation au format json*/
   .then( jsonListTeddies => { /*Résultat du fetch inséeé dans jsonListTeddies*/
-
     
     try{
       for(let jsonTeddies of jsonListTeddies){
