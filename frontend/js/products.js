@@ -3,6 +3,8 @@
 const id = JSON.parse(localStorage.getItem("article_id"));
 const urlId = "http://localhost:3000/api/teddies/:_id";
 
+console.log(window.location.href);
+
   
 /*Afficher les cartes*/
 fetch(url)
