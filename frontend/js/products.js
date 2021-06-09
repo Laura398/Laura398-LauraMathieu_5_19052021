@@ -31,13 +31,12 @@
     document.getElementById("product-img").innerHTML = `<img class="card-img-top" id="card-img-top" src="${teddyData.imageUrl}" alt="Card image cap">`
     document.getElementById("product-name").textContent = teddyData.name
     document.getElementById("product-price").textContent = (parseInt(teddyData.price, 10) / 100)  + ",00 €"
-    document.getElementById("product-description").textContent = teddyData.description    
+    document.getElementById("product-description").textContent = teddyData.description
+    document.getElementById("colors").innerHTML = `<select class="custom-select mr-sm-2 my-2" id="inlineFormCustomSelect">
+                                                        <option selected>${teddyData.colors.join(`</option> <option value="1">`)}</option>
+                                                    </select>`
+
+    document.getElementById("cart-btn").addEventListener("click", function(event) {
+        addTeddyToCart(event, teddyData) /*Event add to cart when click*/
+        })
   }
-  
-  (async function() {
-    const teddies = await getTeddies() /*Getting data from fetch - Will wait until function getTeddies is defined*/
-    for (teddy of teddies) { /*Takes data from all teddies in API*/
-      displayTeddy(teddy) /*Displays data on screen*/
-    }
-  })()
-  
