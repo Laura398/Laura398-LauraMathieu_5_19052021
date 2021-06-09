@@ -16,6 +16,13 @@
 <!--Bootstrap END-->
 
     <title>Orinoco</title>
+
+    <style>
+      #TeddyNumber {
+        width: 5em;
+      }
+
+    </style>
     
 </head>
 
@@ -51,7 +58,7 @@
     <main>
         <section style="background-color: #F3E9F1;">
             <div class="row bg-light mx-0">
-                <div class="col">
+                <div class="col py-4">
                     <h2 class="text-center my-2" id="message-produits">Voici les produits dans votre panier</h2>
                 </div>
             </div>
@@ -65,18 +72,14 @@
 
                     <!--Section: Block Content-->
 <section>
-
-    <!--Grid row-->
     <div class="row">
-  
-      <!--Grid column-->
       <div class="col-lg-8">
   
-        <!-- Card -->
-        <div class="card wish-list mb-3">
+        <!-- Product Information -->
+        <div class="card wish-list mb-3 bg-light">
           <div class="card-body">
   
-            <h5 class="mb-4">Cart (<span>1</span> item)</h5>
+            <h2 class="mb-4 h5">Panier (<span>1</span> produit)</h5>
   
             <div class="row mb-4">
               <div class="col-md-5 col-lg-3 col-xl-3">
@@ -89,16 +92,16 @@
                 <div>
                   <div class="d-flex justify-content-between">
                     <div>
-                      <h5 class="my-2">Norbert</h5>
+                      <h3 class="my-2 h5">Norbert</h5>
                       <p class="my-2 text-muted text-uppercase small">Color: Tan</p>
                     </div>
                     <div>
                       <div class="def-number-input number-input safari_only mb-0 w-100">
                         <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                          class="minus">-</button>
-                        <input class="quantity" min="0" name="quantity" value="1" type="number">
+                          class="minus px-2 rounded">-</button>
+                        <input class="quantity" id="TeddyNumber" min="0" name="quantity" value="1" type="number" style="-moz-appearance: textfield">
                         <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                          class="plus">+</button>
+                          class="plus rounded">+</button>
                       </div>
                     </div>
                   </div>
@@ -113,15 +116,57 @@
               </div>
             </div>
             <hr class="mb-4">
-
-    
           </div>
         </div>
-        <!-- Card -->
-        <div class="card mb-3">
+
+
+        <!-- Personal information form -->
+        <form>
+          <div class="container bg-light mb-4 pb-4">
+            <h2 class="mb-4 pt-4 h5">Informations de livraison</h2>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Nom</label>
+              <input type="name" class="form-control" id="inputFirstName4" placeholder="Prénom" required>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Nom</label>
+              <input type="name" class="form-control" id="inputFamilyName4" placeholder="Nom" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Adresse</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1 rue Principale" required>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress2">Complément d'adresse</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, étage, bâtiment, code d'accès...">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">Ville</label>
+              <input type="text" class="form-control" id="inputCity" required>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputCity">Code Postal</label>
+              <input type="text" class="form-control" id="inputPostalCode" minlength="5" maxlength="5" required>
+            </div>
+          </div>
+          
+          </div>
+        </form>
+  
+      </div>
+      <!--Grid column-->
+  
+      <!--Grid column-->
+      <div class="col-lg-4">
+
+        <!-- Payment information -->
+        <div class="card mb-3 bg-light">
           <div class="card-body">
   
-            <h5 class="mb-4">Nous acceptons :</h5>
+            <h2 class="mb-4 h5">Nous acceptons :</h5>
   
             <img class="mr-2" width="45px"
               src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
@@ -132,18 +177,14 @@
             <img class="mr-2" width="45px"
               src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
               alt="Mastercard">
+            <img class="mr-2" width="45px"
+              src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg"
+              alt="Paypal">
           </div>
         </div>
-        <!-- Card -->
-  
-      </div>
-      <!--Grid column-->
-  
-      <!--Grid column-->
-      <div class="col-lg-4">
   
         <!-- Card -->
-        <div class="card mb-3">
+        <div class="card mb-3 bg-light">
           <div class="card-body">
   
             <h5 class="mb-3">Total :</h5>
@@ -168,7 +209,7 @@
               </li>
             </ul>
   
-            <button type="button" class="btn btn-primary btn-block waves-effect waves-light">Confirmer</button>
+            <a href="confirmation.html"><button type="button" class="btn btn-primary btn-block waves-effect waves-light">Confirmer</button></a>
   
           </div>
         </div>
