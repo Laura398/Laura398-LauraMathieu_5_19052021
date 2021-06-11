@@ -43,11 +43,14 @@
     var options = teddyData.colors; 
     for(var i = 0; i < options.length; i++) {
       var opt = options[i];
+      var col = "chosen-color";
       var el = document.createElement("option");
       el.textContent = opt;
       el.value = opt[i];
+      el.className = col;
       select.appendChild(el);
     }
   }
 
+  
   

@@ -60,27 +60,25 @@
                 <div class="product-info row gx-4 gx-lg-5 align-items-center">
                     
 
-                  <div class="col-md-6 mb-4" id="product-img"></div>
-                  <div class="col-md-6 pb-4">
-                    <div class="small mb-1">ID: <span id="product-id">id</span></div>
-                      <h1 class="display-5 fw-bolder" id="product-name">Name</h1>
+                  <div class="col-md-6 mb-4 shop-item-image" id="product-img"></div>
+                  <div class="col-md-6 pb-4"></div>
+                    <div class="small mb-1 d-none">ID: <span id="product-id">id</span></div>
+                      <h1 class="display-5 fw-bolder shop-item-name" id="product-name">Name</h1>
                       <div class="fs-5 mb-5">
-                          <span class="text-decoration-line-through" id="product-price">Price</span><br />
+                          <span class="text-decoration-line-through shop-item-price" id="product-price">Price</span><br />
         
                           <div id="colors">
                             <div id="template-colors">
-                            <select class="custom-select mr-sm-2 my-2" id="inlineFormCustomSelect">
-                              <option value="" id=product-color>Couleur</option>
+                            <select class="custom-select mr-sm-2 my-2" id="inlineFormCustomSelect" required>
+                              <optgroup label="Couleur" id="product-color"></optgroup>
                             </select>
                             </div>
                           </div>
         
                       <p class="lead" id="product-description">Description description description description description description description description description description.</p>
                       <div class="d-flex mb-5">
-                          <input class="form-control text-center me-3" id="inputQuantity" type="number" min="1" max="9" value="1" style="max-width: 5rem" />
-                          <button class="btn btn-outline-dark flex-shrink-0" id="cart-btn" type="button">
-                              Ajouter au panier
-                          </button>
+                          <input class="form-control text-center me-3 item-quantity-value" id="inputQuantity" type="number" min="1" max="9" value="1" style="max-width: 5rem" />
+                          <input class="btn btn-outline-dark flex-shrink-0 cart-btn" id="cart-btn" type="submit" value="Ajouter au panier">
                       </div>
                   </div>
 
