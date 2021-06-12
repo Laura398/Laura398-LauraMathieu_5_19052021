@@ -5,7 +5,6 @@
     const teddyData = await getTeddyData(teddyId)
     displayTeddy(teddyData)
     displayColors(teddyData)
-    addToCart(teddyData)
     
   })()
 
