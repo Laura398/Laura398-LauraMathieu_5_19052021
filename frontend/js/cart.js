@@ -1,5 +1,3 @@
-updateCartTotal() /*So the cart is always updated*/
-
 if (document.readyState == "loading") {
     document.addEventListener("DOMContentLoaded", ready)
 } else {
@@ -25,6 +23,8 @@ function ready() {
         var button = addToCartButtons[i]
         button.addEventListener("click", addToCartClicked)
     }
+
+    updateCartTotal() /*So the cart is always updated*/
 }
 
 function removeCartItem(event) { /*To remove the item when the button 'remove' is clicked*/
@@ -39,26 +39,6 @@ function quantityChanged(event) { /*change value in html when input value change
         input.value = 1
     }
     updateCartTotal()
-}
-
-function addToCartClicked(event) { /*saving in local storage when article is added to cart in products page*/
-    var button = event.target
-    var shopItem = button.parentElement.parentElement.parentElement
-    var name = shopItem.getElementsByClassName("shop-item-name")[0].innerText
-    var price = shopItem.getElementsByClassName("shop-item-price")[0].innerText
-    var imageSource = shopItem.getElementsByClassName("card-img-top")[0].src
-    var itemValue = shopItem.getElementsByClassName("item-quantity-value")[0].value
-
-    var e = document.getElementById("inlineFormCustomSelect")
-    var chosenColor = e.options[e.selectedIndex].text
-
-    localStorage.setItem("nom", name);
-    localStorage.setItem("prix", price);
-    localStorage.setItem("image", imageSource);
-    localStorage.setItem("nombre", itemValue);
-    localStorage.setItem("couleur", chosenColor);
-
-    addItemToCart()
 }
 
 function updateCartTotal() { /*update cart total price*/
@@ -89,11 +69,39 @@ function numberOfItemsInCart(){ /*updates the number of items in the cart*/
     }
 
     if(totalQuantity == 0) {
-        document.getElementById("items-un-cart").innerHTML = `Panier vide`
+        document.getElementById("items-un-cart").innerHTML = `Votre panier est vide.`
     } else if (totalQuantity == 1) {
-        document.getElementById("items-un-cart").innerHTML = `Panier : 1 produit`
+        document.getElementById("items-un-cart").innerHTML = `Votre panier contient 1 produit.`
     } else {
-        document.getElementById("items-un-cart").innerHTML = `Panier : ${totalQuantity} produits`
+        document.getElementById("items-un-cart").innerHTML = `Votre panier contient ${totalQuantity} produits.`
     }
 
 }
+
+function addToCartClicked(event) { /*saving in local storage when article is added to cart in products page*/
+    var button = event.target
+    var shopItem = button.parentElement.parentElement.parentElement
+    var name = shopItem.getElementsByClassName("shop-item-name")[0].innerText
+    var price = shopItem.getElementsByClassName("shop-item-price")[0].innerText
+    var imageSource = shopItem.getElementsByClassName("card-img-top")[0].src
+    var itemValue = shopItem.getElementsByClassName("item-quantity-value")[0].value
+
+    var e = document.getElementById("inlineFormCustomSelect")
+    var chosenColor = e.options[e.selectedIndex].text
+
+    var teddyAddedInCart = {
+        "nom": name,
+        "prix": price,
+        "image": imageSource,
+        "nombre": itemValue,
+        "couleur": chosenColor,
+    }
+    
+    localStorage.setItem(name, JSON.stringify(teddyAddedInCart));
+
+    addItemToCart()
+}
+
+
+
+console.log(localStorage)
