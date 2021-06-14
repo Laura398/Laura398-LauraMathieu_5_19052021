@@ -124,9 +124,11 @@ function addToCartClicked(event) { /*saving in local storage when article is add
     }
 }
 
-const items = { ...localStorage };
-JSON.parse(localStorage.getItem(items));
+console.log(localStorage)
 
+for (var i = 0; i < localStorage.length; i++) { /*get les items depuis le local storage en fonction des keys*/
+    var test = JSON.parse((localStorage.getItem(localStorage.key(i))));
+    JSON.parse(localStorage.getItem(test));
+    console.log(test.nom, test.prix, test.nombre, test.couleur)
+ }
 
-
-console.log(items)
