@@ -25,6 +25,7 @@ function ready() {
     }
 
     updateCartTotal() /*So the cart is always updated*/
+    displayCart()
 }
 
 function removeCartItem(event) { /*To remove the item when the button 'remove' is clicked*/
@@ -73,6 +74,7 @@ function numberOfItemsInCart(){ /*updates the number of items in the cart*/
     } else if (totalQuantity == 1) {
         document.getElementById("items-un-cart").innerHTML = `Votre panier contient 1 produit.`
     } else {
+    document.querySelectorAll(".nav-cart").innerhtml = `2`
         document.getElementById("items-un-cart").innerHTML = `Votre panier contient ${totalQuantity} produits.`
     }
 
@@ -96,12 +98,35 @@ function addToCartClicked(event) { /*saving in local storage when article is add
         "nombre": itemValue,
         "couleur": chosenColor,
     }
-    
-    localStorage.setItem(name, JSON.stringify(teddyAddedInCart));
 
-    addItemToCart()
+    var readyToAdd = name + " " + chosenColor
+    
+    if (localStorage.getItem(readyToAdd) == null) { /*If item is not yet in local storage*/
+        localStorage.setItem(readyToAdd, JSON.stringify(teddyAddedInCart)); /*add to local storage*/
+    } else { /*if item already in local storage*/
+        var storedItems = JSON.parse(localStorage.getItem(readyToAdd)); /*get local storage*/
+        JSON.parse(localStorage.getItem(storedItems)); /*transform to be able to use in js*/
+        var addItemValue = +storedItems["nombre"] + +itemValue /*update number of items*/
+        var updatedTeddy = { /*update array for local storage*/
+            "nom": name,
+            "prix": price,
+            "image": imageSource,
+            "nombre": addItemValue,
+            "couleur": chosenColor,
+        }
+        localStorage.setItem(readyToAdd, JSON.stringify(updatedTeddy)); /*update local storage*/
+    }
+
+    if(itemValue == 1) {
+        alert("L'article a été ajouté au panier.")
+    } else {
+        alert("Les articles ont été ajoutés au panier.")
+    }
 }
 
+const items = { ...localStorage };
+JSON.parse(localStorage.getItem(items));
 
 
-console.log(localStorage)
+
+console.log(items)
