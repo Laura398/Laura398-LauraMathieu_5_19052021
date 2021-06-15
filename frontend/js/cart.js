@@ -20,8 +20,14 @@ function ready() {
 
     var addToCartButtons = document.getElementsByClassName("cart-btn")
     for(var i = 0; i < addToCartButtons.length; i++) { /*Listening to add to cart button on products page*/
-        var button = addToCartButtons[i]
-        button.addEventListener("click", addToCartClicked)
+        var addButton = addToCartButtons[i]
+        addButton.addEventListener("click", addToCartClicked)
+    }
+
+    var confirmButton = document.getElementsByClassName("confirm-btn")
+    for(var i = 0; i < confirmButton.length; i++) { /*Listening to add to cart button on products page*/
+        var confirm = confirmButton[i]
+        confirm.addEventListener("click", confirmClicked)
     }
 
     updateCartTotal() /*So the cart is always updated*/
@@ -73,6 +79,7 @@ function numberOfItemsInCart(){ /*updates the number of items in the cart*/
 
     if(totalQuantity == 0) {
         document.getElementById("items-in-cart").innerHTML = `Votre panier est vide.`
+        localStorage.clear();
     } else if (totalQuantity == 1) {
         document.getElementById("items-in-cart").innerHTML = `Votre panier contient 1 produit.`
     } else {
@@ -91,6 +98,7 @@ function addToCartClicked(event) { /*saving in local storage when article is add
     var price = shopItem.getElementsByClassName("shop-item-price")[0].innerText
     var imageSource = shopItem.getElementsByClassName("card-img-top")[0].src
     var itemValue = shopItem.getElementsByClassName("item-quantity-value")[0].value
+    var itemId = shopItem.getElementsByClassName("product-id")[0].innerText
 
     var e = document.getElementById("inlineFormCustomSelect")
     var chosenColor = e.options[e.selectedIndex].text
@@ -101,6 +109,7 @@ function addToCartClicked(event) { /*saving in local storage when article is add
         "image": imageSource,
         "nombre": itemValue,
         "couleur": chosenColor,
+        "id": itemId,
     }
 
     var readyToAdd = name + " " + chosenColor
@@ -117,6 +126,7 @@ function addToCartClicked(event) { /*saving in local storage when article is add
             "image": imageSource,
             "nombre": addItemValue,
             "couleur": chosenColor,
+            "id": itemId,
         }
         localStorage.setItem(readyToAdd, JSON.stringify(updatedTeddy)); /*update local storage*/
     }
@@ -141,12 +151,12 @@ function displayCart() {
 
         cloneCartRow.getElementById("cart-img").innerHTML += `<img class="img-fluid w-100 cart-image" id="cart-img" src="${cartItems.image}" alt="Sample">` /*Change image*/
         cloneCartRow.getElementById("cart-name").textContent = cartItems.nom /*Change name*/
-        cloneCartRow.getElementById("cart-color").textContent = cartItems.couleur
-        cloneCartRow.getElementById("cart-number").value = cartItems.nombre
+        cloneCartRow.getElementById("cart-color").textContent = cartItems.couleur /*Change color*/
+        cloneCartRow.getElementById("cart-number").value = cartItems.nombre /*Change value*/
         cloneCartRow.getElementById("cart-price").textContent = cartItems.prix /*change price*/
+        cloneCartRow.getElementById("cart-id").textContent = cartItems.id /*Change id*/
 
         document.getElementById("cart-rows").appendChild(cloneCartRow) /*Set clone to replace template (cards being templateCard's parent)*/
-
     }
 
 }
@@ -161,6 +171,7 @@ function updateLocalStorage() { /*update local storage when item removed from ca
     var imageSource = document.getElementsByClassName("cart-image")[i].src
     var itemValue = document.getElementsByClassName("cart-number")[i].value
     var chosenColor = document.getElementsByClassName("cart-color")[i].textContent
+    var itemId = document.getElementsByClassName("cart-id")[i].textContent
 
     var teddiesInCart = {
         "nom": name,
@@ -168,6 +179,7 @@ function updateLocalStorage() { /*update local storage when item removed from ca
         "image": imageSource,
         "nombre": itemValue,
         "couleur": chosenColor,
+        "id": itemId,
     }
 
     var readyToAdd = name + " " + chosenColor
@@ -188,6 +200,7 @@ for(var i = 0; i < quantityInputs.length; i++) { /*Listening to input change for
     var imageSource = document.getElementsByClassName("cart-image")[i].src
     var itemValue = document.getElementsByClassName("cart-number")[i].value
     var chosenColor = document.getElementsByClassName("cart-color")[i].textContent
+    var itemId = document.getElementsByClassName("cart-id")[i].textContent
 
     var teddiesInCart = {
         "nom": name,
@@ -195,6 +208,7 @@ for(var i = 0; i < quantityInputs.length; i++) { /*Listening to input change for
         "image": imageSource,
         "nombre": itemValue,
         "couleur": chosenColor,
+        "id": itemId,
     }
 
     var readyToAdd = name + " " + chosenColor
@@ -206,7 +220,45 @@ for(var i = 0; i < quantityInputs.length; i++) { /*Listening to input change for
 
 
 
+function confirmClicked() { /*saving in local storage when article is added to cart in products page*/
+    var price = document.getElementsByClassName("cart-total").textContent
+
+    var firstName = document.getElementById("validationDefault01").value
+    var lastName = document.getElementById("validationDefault02").value
+    var mail = document.getElementById("validationDefaultMail").value
+    var phone = document.getElementById("validationDefaultPhone").value
+    var address = document.getElementById("validationDefault03").value
+    var city = document.getElementById("validationDefault04").value
+    var zipCode = document.getElementById("validationDefault05").value
+
+
+    var orderConfirmed = {
+        "prix": price,
+        "prénom": firstName,
+        "nom": lastName,
+        "mail": mail,
+        "téléphone": phone,
+        "adresse": address,
+        "ville": city,
+        "code postal": zipCode,
+    }
+
+    if (document.getElementById("items-in-cart").innerHTML == `Votre panier est vide.`) { /*If item is not yet in local storage*/
+        alert("Votre panier est vide !")
+    } else { /*if item already in local storage*/
+        
+        localStorage.setItem("confirmingOrder", JSON.stringify(orderConfirmed)); /*add to local storage*/
+        location.replace("../frontend/confirmation.html");
+    }
+    
+    
+}
+
+
+
+
 
 displayCart()
 
 console.log(localStorage)
+

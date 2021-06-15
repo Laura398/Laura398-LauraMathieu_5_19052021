@@ -126,44 +126,48 @@
 
 
         <!-- Personal information form -->
-        <form class="container g-3 m-1 mb-4 p-4 bg-light rounded border" method="get" id="form1">
-          <div class="row ml-4">
-            <div class="col-lg-5 m-2">
-              <label for="validationDefault01" class="form-label">Prénom</label>
-              <input type="text" class="form-control" id="validationDefault01" value="Mark" required>
+        <form>
+          <div class="container bg-light mb-4 pb-4">
+            <h2 class="mb-4 pt-4 h5">Informations de livraison</h2>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Prénom</label>
+              <input type="name" class="form-control" id="inputFirstName4" placeholder="Prénom" required>
             </div>
-            <div class="col-lg-5 m-2">
-              <label for="validationDefault02" class="form-label">Nom</label>
-              <input type="text" class="form-control" id="validationDefault02" value="Otto" required>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Nom</label>
+              <input type="name" class="form-control" id="inputFamilyName4" placeholder="Nom" required>
             </div>
-            <div class="col-lg-5 m-2">
-              <label for="validationDefaultUsername" class="form-label">Adresse mail</label>
-              <input type="email" class="form-control" id="validationDefaultMail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" value="adresse@mail.fr" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Téléphone</label>
+              <input type="text" class="form-control" id="inputPhone" pattern="0[1-9][0-9]{8}" minlength="10" maxlength="10" placeholder="0153322327" required>
             </div>
-            <div class="col-lg-5 m-2">
-              <label for="validationDefaultUsername" class="form-label">Téléphone</label>
-              <input type="text" class="form-control" id="validationDefaultPhone" pattern="0[1-9][0-9]{8}" minlength="10" maxlength="10" value="0600000000" required>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Adresse mail</label>
+              <input type="email" class="form-control" id="inputMail" placeholder="adresse@mail.fr" required>
             </div>
-            <div class="col-lg-10 m-2 ml-3">
-              <label for="validationDefault03" class="form-label">Adresse</label>
-              <input type="text" class="form-control" id="validationDefault03" value="1 rue de la Paix" required>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Adresse</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1 rue Principale" required>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress2">Complément d'adresse</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, étage, bâtiment, code d'accès...">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">Ville</label>
+              <input type="text" class="form-control" id="inputCity" placeholder="Tours" required>
             </div>
-            <div class="col-lg-7 m-2">
-              <label for="validationDefault03" class="form-label">Ville</label>
-              <input type="text" class="form-control" id="validationDefault04" value="Albi" required>
+            <div class="form-group col-md-6">
+              <label for="inputCity">Code Postal</label>
+              <input type="text" pattern="[0-9]{5}" class="form-control" id="inputPostalCode" minlength="5" maxlength="5" placeholder="37000" required>
             </div>
-            <div class="col-lg-3 m-2">
-              <label for="validationDefault05" class="form-label">Code Postal</label>
-              <input type="text" class="form-control" id="validationDefault05" pattern="[0-9]{5}" minlength="5" maxlength="5" value="81000" required>
-            </div>
-            <div class="col-12 m-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-                <label class="form-check-label" for="invalidCheck2">
-                  J'ai lu et j'accepte les conditions d'achat.
-                </label>
-              </div>
-            </div>
+          </div>
+          
           </div>
         </form>
   
@@ -207,8 +211,7 @@
               </div>
             </div>
   
-            <button type="submit" form="form1" class="btn btn-primary btn-block waves-effect waves-light confirm-btn">Confirmer</button>
-            
+            <a href="confirmation.html"><button type="button" class="btn btn-primary btn-block waves-effect waves-light confirm-btn">Confirmer</button></a>
   
           </div>
         </div>
