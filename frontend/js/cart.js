@@ -25,12 +25,13 @@ function ready() {
     }
 
     updateCartTotal() /*So the cart is always updated*/
-    displayCart()
 }
 
 function removeCartItem(event) { /*To remove the item when the button 'remove' is clicked*/
     var buttonClicked = event.target
     buttonClicked.parentElement.parentElement.parentElement.parentElement.parentElement.remove()
+
+    updateLocalStorage()
     updateCartTotal()
 }
 
@@ -39,6 +40,7 @@ function quantityChanged(event) { /*change value in html when input value change
     if (isNaN(input.value) || input.value <= 0) {
         input.value = 1
     }
+    
     updateCartTotal()
 }
 
@@ -70,13 +72,15 @@ function numberOfItemsInCart(){ /*updates the number of items in the cart*/
     }
 
     if(totalQuantity == 0) {
-        document.getElementById("items-un-cart").innerHTML = `Votre panier est vide.`
+        document.getElementById("items-in-cart").innerHTML = `Votre panier est vide.`
     } else if (totalQuantity == 1) {
-        document.getElementById("items-un-cart").innerHTML = `Votre panier contient 1 produit.`
+        document.getElementById("items-in-cart").innerHTML = `Votre panier contient 1 produit.`
     } else {
     document.querySelectorAll(".nav-cart").innerhtml = `2`
-        document.getElementById("items-un-cart").innerHTML = `Votre panier contient ${totalQuantity} produits.`
+        document.getElementById("items-in-cart").innerHTML = `Votre panier contient ${totalQuantity} produits.`
     }
+
+    updateStorageQuantity()
 
 }
 
@@ -124,11 +128,85 @@ function addToCartClicked(event) { /*saving in local storage when article is add
     }
 }
 
+
+
+function displayCart() {
+
+    for (var i = 0; i < localStorage.length; i++) { /*get les items depuis le local storage en fonction des keys*/
+        var cartItems = JSON.parse((localStorage.getItem(localStorage.key(i))));
+        JSON.parse(localStorage.getItem(cartItems));
+
+        const templateCartRow = document.getElementById("templateCartRow") /*Select template in HTML doc*/
+        const cloneCartRow = document.importNode(templateCartRow.content, true) /*Clone template*/
+
+        cloneCartRow.getElementById("cart-img").innerHTML += `<img class="img-fluid w-100 cart-image" id="cart-img" src="${cartItems.image}" alt="Sample">` /*Change image*/
+        cloneCartRow.getElementById("cart-name").textContent = cartItems.nom /*Change name*/
+        cloneCartRow.getElementById("cart-color").textContent = cartItems.couleur
+        cloneCartRow.getElementById("cart-number").value = cartItems.nombre
+        cloneCartRow.getElementById("cart-price").textContent = cartItems.prix /*change price*/
+
+        document.getElementById("cart-rows").appendChild(cloneCartRow) /*Set clone to replace template (cards being templateCard's parent)*/
+
+    }
+
+}
+
+function updateLocalStorage() { /*update local storage when item removed from cart*/
+    var removeButtons = document.getElementsByClassName("remove-btn")
+    
+    for(var i = 0; i < removeButtons.length; i++) {
+        
+    var name = document.getElementsByClassName("cart-name")[i].innerText
+    var price = document.getElementsByClassName("cart-price")[i].textContent
+    var imageSource = document.getElementsByClassName("cart-image")[i].src
+    var itemValue = document.getElementsByClassName("cart-number")[i].value
+    var chosenColor = document.getElementsByClassName("cart-color")[i].textContent
+
+    var teddiesInCart = {
+        "nom": name,
+        "prix": price,
+        "image": imageSource,
+        "nombre": itemValue,
+        "couleur": chosenColor,
+    }
+
+    var readyToAdd = name + " " + chosenColor
+
+    localStorage.clear();
+    localStorage.setItem(readyToAdd, JSON.stringify(teddiesInCart)); /*add to local storage*/
+
+    
+}
+
+}
+
+function updateStorageQuantity() { /*update local storage when an item's quantity changes in cart*/
+var quantityInputs = document.getElementsByClassName("quantity")
+for(var i = 0; i < quantityInputs.length; i++) { /*Listening to input change for items in cart*/
+    var name = document.getElementsByClassName("cart-name")[i].innerText
+    var price = document.getElementsByClassName("cart-price")[i].textContent
+    var imageSource = document.getElementsByClassName("cart-image")[i].src
+    var itemValue = document.getElementsByClassName("cart-number")[i].value
+    var chosenColor = document.getElementsByClassName("cart-color")[i].textContent
+
+    var teddiesInCart = {
+        "nom": name,
+        "prix": price,
+        "image": imageSource,
+        "nombre": itemValue,
+        "couleur": chosenColor,
+    }
+
+    var readyToAdd = name + " " + chosenColor
+
+    localStorage.setItem(readyToAdd, JSON.stringify(teddiesInCart)); /*add to local storage*/
+
+}}
+
+
+
+
+
+displayCart()
+
 console.log(localStorage)
-
-for (var i = 0; i < localStorage.length; i++) { /*get les items depuis le local storage en fonction des keys*/
-    var test = JSON.parse((localStorage.getItem(localStorage.key(i))));
-    JSON.parse(localStorage.getItem(test));
-    console.log(test.nom, test.prix, test.nombre, test.couleur)
- }
-
