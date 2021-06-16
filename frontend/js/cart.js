@@ -104,12 +104,12 @@ function addToCartClicked(event) { /*saving in local storage when article is add
     var chosenColor = e.options[e.selectedIndex].text
 
     var teddyAddedInCart = {
-        "nom": name,
-        "prix": price,
-        "image": imageSource,
-        "nombre": itemValue,
-        "couleur": chosenColor,
-        "id": itemId,
+        nom: name,
+        prix: price,
+        image: imageSource,
+        nombre: itemValue,
+        couleur: chosenColor,
+        id: itemId,
     }
 
     var readyToAdd = name + " " + chosenColor
@@ -121,12 +121,12 @@ function addToCartClicked(event) { /*saving in local storage when article is add
         JSON.parse(localStorage.getItem(storedItems)); /*transform to be able to use in js*/
         var addItemValue = +storedItems["nombre"] + +itemValue /*update number of items*/
         var updatedTeddy = { /*update array for local storage*/
-            "nom": name,
-            "prix": price,
-            "image": imageSource,
-            "nombre": addItemValue,
-            "couleur": chosenColor,
-            "id": itemId,
+            nom: name,
+            prix: price,
+            image: imageSource,
+            nombre: addItemValue,
+            couleur: chosenColor,
+            id: itemId,
         }
         localStorage.setItem(readyToAdd, JSON.stringify(updatedTeddy)); /*update local storage*/
     }
@@ -174,12 +174,12 @@ function updateLocalStorage() { /*update local storage when item removed from ca
     var itemId = document.getElementsByClassName("cart-id")[i].textContent
 
     var teddiesInCart = {
-        "nom": name,
-        "prix": price,
-        "image": imageSource,
-        "nombre": itemValue,
-        "couleur": chosenColor,
-        "id": itemId,
+        nom: name,
+        prix: price,
+        image: imageSource,
+        nombre: itemValue,
+        couleur: chosenColor,
+        id: itemId,
     }
 
     var readyToAdd = name + " " + chosenColor
@@ -203,12 +203,12 @@ for(var i = 0; i < quantityInputs.length; i++) { /*Listening to input change for
     var itemId = document.getElementsByClassName("cart-id")[i].textContent
 
     var teddiesInCart = {
-        "nom": name,
-        "prix": price,
-        "image": imageSource,
-        "nombre": itemValue,
-        "couleur": chosenColor,
-        "id": itemId,
+        nom: name,
+        prix: price,
+        image: imageSource,
+        nombre: itemValue,
+        couleur: chosenColor,
+        id: itemId,
     }
 
     var readyToAdd = name + " " + chosenColor
@@ -218,47 +218,76 @@ for(var i = 0; i < quantityInputs.length; i++) { /*Listening to input change for
 }}
 
 
+displayCart()
 
+
+
+var cartItemContainer = document.getElementsByClassName("cart-items")[0]
+var cartRows = cartItemContainer.getElementsByClassName("cart-row")
+
+for (var i = 0; i < cartRows.length; i++) {
+    var cartRow = cartRows[i]
+    var idElement = cartRow.getElementsByClassName("cart-id")[0].textContent
+}
+
+var firstName = document.getElementById("validationDefault01").value
+var lastName = document.getElementById("validationDefault02").value
+var email = document.getElementById("validationDefaultMail").value
+var address = document.getElementById("validationDefault03").value
+var city = document.getElementById("validationDefault04").value
+
+var objet = {
+    contact: {
+        firstName: firstName,
+        lastName: lastName,
+        address: address,
+        city: city,
+        email: email
+    },
+    products: [idElement]
+    };
+
+    for (var i = 0; i < cartRows.length; i++) {
+        var cartRow = cartRows[i]
+        var idElement = cartRow.getElementsByClassName("cart-id")[0].textContent
+        console.log(idElement)
+    }
+
+    console.log(idElement)
 
 function confirmClicked() { /*saving in local storage when article is added to cart in products page*/
-    var price = document.getElementsByClassName("cart-total").textContent
-
-    var firstName = document.getElementById("validationDefault01").value
-    var lastName = document.getElementById("validationDefault02").value
-    var mail = document.getElementById("validationDefaultMail").value
-    var phone = document.getElementById("validationDefaultPhone").value
-    var address = document.getElementById("validationDefault03").value
-    var city = document.getElementById("validationDefault04").value
-    var zipCode = document.getElementById("validationDefault05").value
-
-
-    var orderConfirmed = {
-        "prix": price,
-        "prénom": firstName,
-        "nom": lastName,
-        "mail": mail,
-        "téléphone": phone,
-        "adresse": address,
-        "ville": city,
-        "code postal": zipCode,
-    }
 
     if (document.getElementById("items-in-cart").innerHTML == `Votre panier est vide.`) { /*If item is not yet in local storage*/
         alert("Votre panier est vide !")
     } else { /*if item already in local storage*/
-        
-        localStorage.setItem("confirmingOrder", JSON.stringify(orderConfirmed)); /*add to local storage*/
-        location.replace("../frontend/confirmation.html");
-    }
-    
+        console.log("ok")
+        completeOrder()
+    }    
     
 }
 
 
+function completeOrder() {
+
+
+let total = document.getElementsByClassName("cart-total")[0].innerText
+
+let finalObj = {};
+finalObj.contact = objet.contact;
+
+
+for (var i = 0; i < localStorage.length; i++) { /*get les items depuis le local storage en fonction des keys*/
+    var cartItems = JSON.parse((localStorage.getItem(localStorage.key(i))));
+    JSON.parse(localStorage.getItem(cartItems));
+    finalObj.products = {"id": cartItems.id}
+    console.log(finalObj)
+}
+
+
+}
 
 
 
-displayCart()
 
 console.log(localStorage)
 
