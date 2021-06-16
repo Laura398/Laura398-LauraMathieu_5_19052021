@@ -38,12 +38,12 @@
   };
 
   function displayColors(teddyData) { /*Display Colors*/
-    var select = document.getElementById("inlineFormCustomSelect"); 
-    var options = teddyData.colors; 
-    for(var i = 0; i < options.length; i++) {
-      var opt = options[i];
-      var col = "chosen-color";
-      var el = document.createElement("option");
+    let select = document.getElementById("inlineFormCustomSelect"); 
+    let options = teddyData.colors; 
+    for(let i = 0; i < options.length; i++) {
+      let opt = options[i];
+      let col = "chosen-color";
+      let el = document.createElement("option");
       el.textContent = opt;
       el.value = opt[i];
       el.className = col;

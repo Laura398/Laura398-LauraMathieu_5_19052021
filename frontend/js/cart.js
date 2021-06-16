@@ -244,23 +244,14 @@ var objet = {
         city: city,
         email: email
     },
-    products: [idElement]
+    products: []
     };
-
-    for (var i = 0; i < cartRows.length; i++) {
-        var cartRow = cartRows[i]
-        var idElement = cartRow.getElementsByClassName("cart-id")[0].textContent
-        console.log(idElement)
-    }
-
-    console.log(idElement)
 
 function confirmClicked() { /*saving in local storage when article is added to cart in products page*/
 
     if (document.getElementById("items-in-cart").innerHTML == `Votre panier est vide.`) { /*If item is not yet in local storage*/
         alert("Votre panier est vide !")
     } else { /*if item already in local storage*/
-        console.log("ok")
         completeOrder()
     }    
     
@@ -272,21 +263,24 @@ function completeOrder() {
 
 let total = document.getElementsByClassName("cart-total")[0].innerText
 
-let finalObj = {};
-finalObj.contact = objet.contact;
+let finalOrder = {};
+finalOrder.contact = objet.contact;
+finalOrder.products = [];
 
 
 for (var i = 0; i < localStorage.length; i++) { /*get les items depuis le local storage en fonction des keys*/
-    var cartItems = JSON.parse((localStorage.getItem(localStorage.key(i))));
+    let cartItems = JSON.parse((localStorage.getItem(localStorage.key(i))));
     JSON.parse(localStorage.getItem(cartItems));
-    finalObj.products = {"id": cartItems.id}
-    console.log(finalObj)
+    finalOrder.products.push({id: cartItems.id})
+    
 }
 
+console.log(finalOrder)
+
+
+/*post*/
 
 }
-
-
 
 
 console.log(localStorage)
