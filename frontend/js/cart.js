@@ -1,3 +1,27 @@
+(function () {
+    'use strict'
+  
+    /* Fetch all the forms we want to apply custom Bootstrap validation styles to*/
+    var forms = document.querySelectorAll('.needs-validation')
+  
+    /* Loop over them and prevent submission*/
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+            test()
+          }
+          
+          
+          form.classList.add('was-validated')
+          
+        }, false)
+      })
+      
+  })()
+
 if (document.readyState == "loading") {
     document.addEventListener("DOMContentLoaded", ready)
 } else {
@@ -24,13 +48,33 @@ function ready() {
         addButton.addEventListener("click", addToCartClicked)
     }
 
-    var confirmButton = document.getElementsByClassName("confirm-btn")
-    for(var i = 0; i < confirmButton.length; i++) { /*Listening to add to cart button on products page*/
-        var confirm = confirmButton[i]
-        confirm.addEventListener("click", confirmClicked)
+    var confirmButtons = document.getElementsByClassName("confirm-btn")
+    for(var i = 0; i < confirmButtons.length; i++) { /*Listening to add to cart button on products page*/
+        var confirm = confirmButtons[i]
+        confirm.addEventListener("click", test)
     }
 
+
     updateCartTotal() /*So the cart is always updated*/
+}
+
+function myFunc(e){
+    e.preventDefault();
+}
+
+function test() {
+    document.getElementById("submit-btn").addEventListener("click", function(event){
+        event.preventDefault()
+      });
+    var forms = document.getElementsByClassName('needs-validation')
+            console.log(forms[0].className)
+            if(forms[0].className === "container g-3 m-1 mb-4 p-4 bg-light rounded border needs-validation was-validated") {
+                console.log("ok")
+                confirmClicked()
+            } else {
+                console.log("nope")
+                
+            }
 }
 
 function removeCartItem(event) { /*To remove the item when the button 'remove' is clicked*/
@@ -230,11 +274,11 @@ for (var i = 0; i < cartRows.length; i++) {
     var idElement = cartRow.getElementsByClassName("cart-id")[0].textContent
 }
 
-var firstName = document.getElementById("validationDefault01").value
-var lastName = document.getElementById("validationDefault02").value
-var email = document.getElementById("validationDefaultMail").value
-var address = document.getElementById("validationDefault03").value
-var city = document.getElementById("validationDefault04").value
+var firstName = document.getElementById("validationCustom01").value
+var lastName = document.getElementById("validationCustom02").value
+var email = document.getElementById("validationCustomUsername").value
+var address = document.getElementById("validationCustom03").value
+var city = document.getElementById("validationCustom04").value
 
 var objet = {
     contact: {
@@ -252,6 +296,7 @@ function confirmClicked() { /*saving in local storage when article is added to c
     if (document.getElementById("items-in-cart").innerHTML == `Votre panier est vide.`) { /*If item is not yet in local storage*/
         alert("Votre panier est vide !")
     } else { /*if item already in local storage*/
+        location.replace("../frontend/confirmation.html");
         completeOrder()
     }    
     
@@ -260,6 +305,7 @@ function confirmClicked() { /*saving in local storage when article is added to c
 
 function completeOrder() {
 
+    console.log("hello")
 
 let total = document.getElementsByClassName("cart-total")[0].innerText
 
