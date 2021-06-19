@@ -6,21 +6,21 @@ if (document.readyState == "loading") {
 
 function ready() {
 
-    var removeButtons = document.getElementsByClassName("remove-btn")
-    for(var i = 0; i < removeButtons.length; i++) { /*Listen to click on remove item button*/
-        var button = removeButtons[i]
+    let removeButtons = document.getElementsByClassName("remove-btn")
+    for(let i = 0; i < removeButtons.length; i++) { /*Listen to click on remove item button*/
+        let button = removeButtons[i]
         button.addEventListener('click', removeCartItem)
     }
 
-    var quantityInputs = document.getElementsByClassName("quantity")
-    for(var i = 0; i < quantityInputs.length; i++) { /*Listening to input change for items in cart*/
-        var input = quantityInputs[i]
+    let quantityInputs = document.getElementsByClassName("quantity")
+    for(let i = 0; i < quantityInputs.length; i++) { /*Listening to input change for items in cart*/
+        let input = quantityInputs[i]
         input.addEventListener("change", quantityChanged)
     }
 
-    var addToCartButtons = document.getElementsByClassName("cart-btn")
-    for(var i = 0; i < addToCartButtons.length; i++) { /*Listening to add to cart button on products page*/
-        var addButton = addToCartButtons[i]
+    let addToCartButtons = document.getElementsByClassName("cart-btn")
+    for(let i = 0; i < addToCartButtons.length; i++) { /*Listening to add to cart button on products page*/
+        let addButton = addToCartButtons[i]
         addButton.addEventListener("click", addToCartClicked)
     }
 
@@ -28,7 +28,7 @@ function ready() {
 }
 
 function removeCartItem(event) { /*To remove the item when the button 'remove' is clicked*/
-    var buttonClicked = event.target
+    let buttonClicked = event.target
     buttonClicked.parentElement.parentElement.parentElement.parentElement.parentElement.remove()
 
     updateLocalStorage()
@@ -36,7 +36,7 @@ function removeCartItem(event) { /*To remove the item when the button 'remove' i
 }
 
 function quantityChanged(event) { /*change value in html when input value changes*/
-    var input = event.target
+    let input = event.target
     if (isNaN(input.value) || input.value <= 0) {
         input.value = 1
     }
@@ -45,17 +45,17 @@ function quantityChanged(event) { /*change value in html when input value change
 }
 
 function updateCartTotal() { /*update cart total price*/
-    var cartItemContainer = document.getElementsByClassName("cart-items")[0]
-    var cartRows = cartItemContainer.getElementsByClassName("cart-row")
-    var total = 0
+    let cartItemContainer = document.getElementsByClassName("cart-items")[0]
+    let cartRows = cartItemContainer.getElementsByClassName("cart-row")
+    let total = 0
 
-    for (var i = 0; i < cartRows.length; i++) {
-        var cartRow = cartRows[i]
-        var priceElement = cartRow.getElementsByClassName("cart-price")[0]
-        var quantityElement = cartRow.getElementsByClassName("quantity")[0]
+    for (let i = 0; i < cartRows.length; i++) {
+        let cartRow = cartRows[i]
+        let priceElement = cartRow.getElementsByClassName("cart-price")[0]
+        let quantityElement = cartRow.getElementsByClassName("quantity")[0]
         
-        var price = parseFloat(priceElement.innerText.replace("€", ""))
-        var quantity = quantityElement.value
+        let price = parseFloat(priceElement.innerText.replace("€", ""))
+        let quantity = quantityElement.value
         total = total + (price * quantity)
     }
     document.getElementsByClassName("cart-total")[0].innerText = total + ",00€"
@@ -64,9 +64,9 @@ function updateCartTotal() { /*update cart total price*/
 }
 
 function numberOfItemsInCart(){ /*updates the number of items in the cart*/
-    var array = document.getElementsByName('quantity');
-    var totalQuantity = 0;
-    for(var i=0;i<array.length;i++){
+    let array = document.getElementsByName('quantity');
+    let totalQuantity = 0;
+    for(let i=0;i<array.length;i++){
         if(parseInt(array[i].value))
             totalQuantity += parseInt(array[i].value);
     }
@@ -86,18 +86,18 @@ function numberOfItemsInCart(){ /*updates the number of items in the cart*/
 }
 
 function addToCartClicked(event) { /*saving in local storage when article is added to cart in products page*/
-    var button = event.target
-    var shopItem = button.parentElement.parentElement.parentElement
-    var name = shopItem.getElementsByClassName("shop-item-name")[0].innerText
-    var price = shopItem.getElementsByClassName("shop-item-price")[0].innerText
-    var imageSource = shopItem.getElementsByClassName("card-img-top")[0].src
-    var itemValue = shopItem.getElementsByClassName("item-quantity-value")[0].value
-    var itemId = shopItem.getElementsByClassName("product-id")[0].innerText
+    let button = event.target
+    let shopItem = button.parentElement.parentElement.parentElement
+    let name = shopItem.getElementsByClassName("shop-item-name")[0].innerText
+    let price = shopItem.getElementsByClassName("shop-item-price")[0].innerText
+    let imageSource = shopItem.getElementsByClassName("card-img-top")[0].src
+    let itemValue = shopItem.getElementsByClassName("item-quantity-value")[0].value
+    let itemId = shopItem.getElementsByClassName("product-id")[0].innerText
 
-    var e = document.getElementById("inlineFormCustomSelect")
-    var chosenColor = e.options[e.selectedIndex].text
+    let e = document.getElementById("inlineFormCustomSelect")
+    let chosenColor = e.options[e.selectedIndex].text
 
-    var teddyAddedInCart = {
+    let teddyAddedInCart = {
         nom: name,
         prix: price,
         image: imageSource,
@@ -106,15 +106,15 @@ function addToCartClicked(event) { /*saving in local storage when article is add
         id: itemId,
     }
 
-    var readyToAdd = name + " " + chosenColor
+    let readyToAdd = name + " " + chosenColor
     
     if (localStorage.getItem(readyToAdd) == null) { /*If item is not yet in local storage*/
         localStorage.setItem(readyToAdd, JSON.stringify(teddyAddedInCart)); /*add to local storage*/
     } else { /*if item already in local storage*/
-        var storedItems = JSON.parse(localStorage.getItem(readyToAdd)); /*get local storage*/
+        let storedItems = JSON.parse(localStorage.getItem(readyToAdd)); /*get local storage*/
         JSON.parse(localStorage.getItem(storedItems)); /*transform to be able to use in js*/
-        var addItemValue = +storedItems["nombre"] + +itemValue /*update number of items*/
-        var updatedTeddy = { /*update array for local storage*/
+        let addItemValue = +storedItems["nombre"] + +itemValue /*update number of items*/
+        let updatedTeddy = { /*update array for local storage*/
             nom: name,
             prix: price,
             image: imageSource,
@@ -136,8 +136,8 @@ function addToCartClicked(event) { /*saving in local storage when article is add
 
 function displayCart() {
 
-    for (var i = 0; i < localStorage.length; i++) { /*get les items depuis le local storage en fonction des keys*/
-        var cartItems = JSON.parse((localStorage.getItem(localStorage.key(i))));
+    for (let i = 0; i < localStorage.length; i++) { /*get les items depuis le local storage en fonction des keys*/
+        let cartItems = JSON.parse((localStorage.getItem(localStorage.key(i))));
         JSON.parse(localStorage.getItem(cartItems));
 
         const templateCartRow = document.getElementById("templateCartRow") /*Select template in HTML doc*/
@@ -156,18 +156,18 @@ function displayCart() {
 }
 
 function updateLocalStorage() { /*update local storage when item removed from cart*/
-    var removeButtons = document.getElementsByClassName("remove-btn")
+    let removeButtons = document.getElementsByClassName("remove-btn")
     
-    for(var i = 0; i < removeButtons.length; i++) {
+    for(let i = 0; i < removeButtons.length; i++) {
         
-    var name = document.getElementsByClassName("cart-name")[i].innerText
-    var price = document.getElementsByClassName("cart-price")[i].textContent
-    var imageSource = document.getElementsByClassName("cart-image")[i].src
-    var itemValue = document.getElementsByClassName("cart-number")[i].value
-    var chosenColor = document.getElementsByClassName("cart-color")[i].textContent
-    var itemId = document.getElementsByClassName("cart-id")[i].textContent
+    let name = document.getElementsByClassName("cart-name")[i].innerText
+    let price = document.getElementsByClassName("cart-price")[i].textContent
+    let imageSource = document.getElementsByClassName("cart-image")[i].src
+    let itemValue = document.getElementsByClassName("cart-number")[i].value
+    let chosenColor = document.getElementsByClassName("cart-color")[i].textContent
+    let itemId = document.getElementsByClassName("cart-id")[i].textContent
 
-    var teddiesInCart = {
+    let teddiesInCart = {
         nom: name,
         prix: price,
         image: imageSource,
@@ -176,7 +176,7 @@ function updateLocalStorage() { /*update local storage when item removed from ca
         id: itemId,
     }
 
-    var readyToAdd = name + " " + chosenColor
+    let readyToAdd = name + " " + chosenColor
 
     localStorage.clear();
     localStorage.setItem(readyToAdd, JSON.stringify(teddiesInCart)); /*add to local storage*/
@@ -187,16 +187,16 @@ function updateLocalStorage() { /*update local storage when item removed from ca
 }
 
 function updateStorageQuantity() { /*update local storage when an item's quantity changes in cart*/
-var quantityInputs = document.getElementsByClassName("quantity")
-for(var i = 0; i < quantityInputs.length; i++) { /*Listening to input change for items in cart*/
-    var name = document.getElementsByClassName("cart-name")[i].innerText
-    var price = document.getElementsByClassName("cart-price")[i].textContent
-    var imageSource = document.getElementsByClassName("cart-image")[i].src
-    var itemValue = document.getElementsByClassName("cart-number")[i].value
-    var chosenColor = document.getElementsByClassName("cart-color")[i].textContent
-    var itemId = document.getElementsByClassName("cart-id")[i].textContent
+let quantityInputs = document.getElementsByClassName("quantity")
+for(let i = 0; i < quantityInputs.length; i++) { /*Listening to input change for items in cart*/
+    let name = document.getElementsByClassName("cart-name")[i].innerText
+    let price = document.getElementsByClassName("cart-price")[i].textContent
+    let imageSource = document.getElementsByClassName("cart-image")[i].src
+    let itemValue = document.getElementsByClassName("cart-number")[i].value
+    let chosenColor = document.getElementsByClassName("cart-color")[i].textContent
+    let itemId = document.getElementsByClassName("cart-id")[i].textContent
 
-    var teddiesInCart = {
+    let teddiesInCart = {
         nom: name,
         prix: price,
         image: imageSource,
@@ -205,7 +205,7 @@ for(var i = 0; i < quantityInputs.length; i++) { /*Listening to input change for
         id: itemId,
     }
 
-    var readyToAdd = name + " " + chosenColor
+    let readyToAdd = name + " " + chosenColor
 
     localStorage.setItem(readyToAdd, JSON.stringify(teddiesInCart)); /*add to local storage*/
 
@@ -216,22 +216,18 @@ displayCart()
 
 
 
-var cartItemContainer = document.getElementsByClassName("cart-items")[0]
-var cartRows = cartItemContainer.getElementsByClassName("cart-row")
+let cartItemContainer = document.getElementsByClassName("cart-items")[0]
+let cartRows = cartItemContainer.getElementsByClassName("cart-row")
 
-for (var i = 0; i < cartRows.length; i++) {
-    var cartRow = cartRows[i]
-    var idElement = cartRow.getElementsByClassName("cart-id")[0].textContent
-}
-
-var firstName = document.getElementById("validationDefault01").value
-var lastName = document.getElementById("validationDefault02").value
-var email = document.getElementById("validationDefaultMail").value
-var address = document.getElementById("validationDefault03").value
-var city = document.getElementById("validationDefault04").value
+let firstName = document.getElementById("validationDefault01").textContent
+let lastName = document.getElementById("validationDefault02").textContent
+let email = document.getElementById("validationDefaultMail").textContent
+let address = document.getElementById("validationDefault03").textContent
+let city = document.getElementById("validationDefault04").textContent
+let zipCode = document.getElementById("validationDefault05").textContent
 
 
-var contact = {
+let contact = {
         firstName: firstName,
         lastName: lastName,
         address: address,
@@ -257,47 +253,59 @@ function myFunc(e){
 
 function completeOrder() {
 
+    let total = document.getElementsByClassName("cart-total")[0].innerText
 
-let total = document.getElementsByClassName("cart-total")[0].innerText
-
-let finalOrder = {};
-finalOrder.contact = contact;
-finalOrder.products = [];
-
-for (var i = 0; i < localStorage.length; i++) { /*get les items depuis le local storage en fonction des keys*/
-    let cartItems = JSON.parse((localStorage.getItem(localStorage.key(i))));
-    JSON.parse(localStorage.getItem(cartItems));
-    finalOrder.products.push(cartItems.id)
-    
-}
+    let finalOrder = {};
+    finalOrder.contact = contact;
+    finalOrder.products = [];
+    let joinedArrays = [];
+    let valueArray = {};
 
 
-console.log(finalOrder)
+    for (let i = 0; i < localStorage.length; i++) { /*get items from local storage depending on keys*/
+            let cartRow = cartRows[i]
+            let value = cartRow.getElementsByClassName("cart-number")[0].value
 
+            let cartItems = JSON.parse((localStorage.getItem(localStorage.key(i))));
+            JSON.parse(localStorage.getItem(cartItems));
 
-/*post*/
-
-teddiesUrl = "http://localhost:3000/api/teddies/order";
-
-var xhr = new XMLHttpRequest();
-
-xhr.open("POST", teddiesUrl, true);
-
-xhr.onload = function () {
-  
-    if (this.status == 201) {
-      var order = JSON.parse(this.responseText);
-      let successMsg = document.querySelector(".test-test-test");
-      successMsg.textContent = "Merci pour votre achat  " + order.contact.firstName + " " + order.contact.lastName + " d'un montant de " + total + " €. Votre numéro de commande est le suivant: " + order.orderId + "."
-    } else {
+            let integerValue = parseInt(value, 10); /*transforms value into a number*/
+            valueArray = Array(integerValue).fill(cartItems.id) /*duplicate id depending on value*/
+            joinedArrays.push(valueArray) /*1 array with an array for each id*/
+        
     }
-  };
 
-xhr.setRequestHeader("Content-type", "application/json");
-xhr.send(JSON.stringify(finalOrder));
+    finalOrder.products = [].concat.apply([], joinedArrays); /*merge all arrays inside joindedArrays*/
 
+    /*POST*/
+
+    teddiesUrl = "http://localhost:3000/api/teddies/order";
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST", teddiesUrl, true);
+
+    xhr.onload = function () {
+    
+        if (this.status == 201) {
+        let order = JSON.parse(this.responseText);
+        let successMsg = `<p class="text-center h5">Bonjour ${order.contact.firstName} ${order.contact.lastName},<br />
+                            Votre commande numéro ${order.orderId} a bien été validée, pour un montant total de ${total}.<br />
+                            Elle vous sera livrée dès que possible à l'adresse suivante :<br />
+                            ${order.contact.address}<br />
+                            ${zipCode} ${order.contact.city}<br />
+                            Vous recevrez sous peu un mail de onfirmation à l'adresse ${order.contact.email}.<br />
+                            Nous vous remercions pour votre confiance.</p>`
+        
+        localStorage.setItem("message", JSON.stringify(successMsg));
+        } else {
+        }
+    };
+
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send(JSON.stringify(finalOrder));
+
+    location.replace("../frontend/confirmation.html")
 }
-
 
 console.log(localStorage)
-
