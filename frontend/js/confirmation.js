@@ -18,9 +18,3 @@ toFill.innerHTML = message
 console.log(localStorage)
 
 
-
-
-
-
-
-var inputByName = document.getElementsByTagName("input")[1].value;
