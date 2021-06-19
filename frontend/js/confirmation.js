@@ -13,8 +13,6 @@ let toFill = document.getElementsByClassName("success-message")[0]
 
 toFill.innerHTML = message
 
+localStorage.clear();
+
 }
-
-console.log(localStorage)
-
-

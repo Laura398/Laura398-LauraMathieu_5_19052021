@@ -214,98 +214,140 @@ for(let i = 0; i < quantityInputs.length; i++) { /*Listening to input change for
 
 displayCart()
 
-
-
-let cartItemContainer = document.getElementsByClassName("cart-items")[0]
-let cartRows = cartItemContainer.getElementsByClassName("cart-row")
-
-let firstName = document.getElementById("validationDefault01").textContent
-let lastName = document.getElementById("validationDefault02").textContent
-let email = document.getElementById("validationDefaultMail").textContent
-let address = document.getElementById("validationDefault03").textContent
-let city = document.getElementById("validationDefault04").textContent
-let zipCode = document.getElementById("validationDefault05").textContent
-
-
-let contact = {
-        firstName: firstName,
-        lastName: lastName,
-        address: address,
-        city: city,
-        email: email
-    };
-
-function confirmClicked() { /*saving in local storage when article is added to cart in products page*/
-
-    if (document.getElementById("items-in-cart").innerHTML == `Votre panier est vide.`) { /*If item is not yet in local storage*/
-        alert("Votre panier est vide !")
-    } else { /*if item already in local storage*/
-        completeOrder()
-    }    
-    
-}
-
 function myFunc(e){
     e.preventDefault();
-    confirmClicked()
+    validateForm()
 }
 
+function validateForm() {
+    var fName = document.forms["form"]["firstName"].value;
+    var lName = document.forms["form"]["lastName"].value;
+    var mail = document.forms["form"]["email"].value;
+    var tel = document.forms["form"]["phone"].value;
+    var house = document.forms["form"]["address"].value;
+    var town = document.forms["form"]["city"].value;
+    var code = document.forms["form"]["zip"].value;
+
+    testMail = mail.match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)
+    testPhone = tel.match(/0[1-9][0-9]{8}/)
+    testZip = code.match(/[0-9]{5}/)
+
+    if (document.getElementById("items-in-cart").innerHTML == `Votre panier est vide.`) {
+      alert("Votre panier est vide !")
+    } else if (fName == "") {
+      alert("Le prénom doit être correctement renseigné.");
+      return false;
+    } else if (lName == "") {
+      alert("Le nom doit être correctement renseigné.");
+      return false;
+    } else if (!testMail) {
+        alert("L'adresse mail doit être correctement renseignée.");
+        return false;
+    }  else if (!testPhone) {
+        alert("Le numéro de téléphone doit être correctement renseigné.");
+        return false;
+    }  else if (house == "") {
+        alert("L'adresse postale doit être correctement renseignée.");
+        return false;
+    } else if (town == "") {
+        alert("La ville doit être correctement renseignée.");
+        return false;
+    } else if (!testZip) {
+        alert("Le code postal doit être correctement renseigné.");
+        return false;
+    } else if (document.getElementById("invalidCheck2").checked) {
+        completeOrder()
+    } else {
+        alert("Vous devez accepter les conditions d'utilisation.")
+    }
+}
 
 function completeOrder() {
 
-    let total = document.getElementsByClassName("cart-total")[0].innerText
+    let cartItemContainer = document.getElementsByClassName("cart-items")[0]
+let cartRows = cartItemContainer.getElementsByClassName("cart-row")
 
-    let finalOrder = {};
-    finalOrder.contact = contact;
-    finalOrder.products = [];
-    let joinedArrays = [];
-    let valueArray = {};
+let firstName = document.getElementById("validationDefault01").value
+let lastName = document.getElementById("validationDefault02").value
+let email = document.getElementById("validationDefaultMail").value
+let address = document.getElementById("validationDefault03").value
+let city = document.getElementById("validationDefault04").value
+let zipCode = document.getElementById("validationDefault05").value
 
 
-    for (let i = 0; i < localStorage.length; i++) { /*get items from local storage depending on keys*/
-            let cartRow = cartRows[i]
-            let value = cartRow.getElementsByClassName("cart-number")[0].value
+document.getElementsByClassName("demo1").innerHTML = firstName
+document.getElementsByClassName("demo2").innerHTML = lastName
+document.getElementsByClassName("demo3").innerHTML = email
+document.getElementsByClassName("demo4").innerHTML = address
+document.getElementsByClassName("demo5").innerHTML = city
+document.getElementsByClassName("demo6").innerHTML = zipCode
 
-            let cartItems = JSON.parse((localStorage.getItem(localStorage.key(i))));
-            JSON.parse(localStorage.getItem(cartItems));
+let zip = document.getElementsByClassName("demo6").innerHTML
 
-            let integerValue = parseInt(value, 10); /*transforms value into a number*/
-            valueArray = Array(integerValue).fill(cartItems.id) /*duplicate id depending on value*/
-            joinedArrays.push(valueArray) /*1 array with an array for each id*/
-        
-    }
 
-    finalOrder.products = [].concat.apply([], joinedArrays); /*merge all arrays inside joindedArrays*/
+let contact = {
+    firstName: document.getElementsByClassName("demo1").innerHTML,
+    lastName: document.getElementsByClassName("demo2").innerHTML,
+    address: document.getElementsByClassName("demo4").innerHTML,
+    city: document.getElementsByClassName("demo5").innerHTML,
+    email: document.getElementsByClassName("demo3").innerHTML
+};
 
-    /*POST*/
 
-    teddiesUrl = "http://localhost:3000/api/teddies/order";
+let total = document.getElementsByClassName("cart-total")[0].innerText
 
-    let xhr = new XMLHttpRequest();
+let finalOrder = {};
+finalOrder.contact = contact;
+finalOrder.products = [];
+let joinedArrays = [];
+let valueArray = {};
 
-    xhr.open("POST", teddiesUrl, true);
 
-    xhr.onload = function () {
+for (let i = 0; i < localStorage.length; i++) { /*get items from local storage depending on keys*/
+        let cartRow = cartRows[i]
+        let value = cartRow.getElementsByClassName("cart-number")[0].value
+
+        let cartItems = JSON.parse((localStorage.getItem(localStorage.key(i))));
+        JSON.parse(localStorage.getItem(cartItems));
+
+        let integerValue = parseInt(value, 10); /*transforms value into a number*/
+        valueArray = Array(integerValue).fill(cartItems.id) /*duplicate id depending on value*/
+        joinedArrays.push(valueArray) /*1 array with an array for each id*/
     
-        if (this.status == 201) {
-        let order = JSON.parse(this.responseText);
-        let successMsg = `<p class="text-center h5">Bonjour ${order.contact.firstName} ${order.contact.lastName},<br />
-                            Votre commande numéro ${order.orderId} a bien été validée, pour un montant total de ${total}.<br />
-                            Elle vous sera livrée dès que possible à l'adresse suivante :<br />
-                            ${order.contact.address}<br />
-                            ${zipCode} ${order.contact.city}<br />
-                            Vous recevrez sous peu un mail de onfirmation à l'adresse ${order.contact.email}.<br />
-                            Nous vous remercions pour votre confiance.</p>`
-        
-        localStorage.setItem("message", JSON.stringify(successMsg));
-        } else {
-        }
-    };
-
-    xhr.setRequestHeader("Content-type", "application/json");
-    xhr.send(JSON.stringify(finalOrder));
-
-    location.replace("../frontend/confirmation.html")
 }
 
-console.log(localStorage)
+finalOrder.products = [].concat.apply([], joinedArrays); /*merge all arrays inside joindedArrays*/
+
+/*POST*/
+
+teddiesUrl = "http://localhost:3000/api/teddies/order";
+
+let xhr = new XMLHttpRequest();
+
+xhr.open("POST", teddiesUrl, true);
+
+xhr.onload = function () {
+
+    if (this.status == 201) {
+    let order = JSON.parse(this.responseText);
+    let successMsg = `<p class="text-center h5">Bonjour ${order.contact.firstName} ${order.contact.lastName},<br />
+                        Votre commande numéro ${order.orderId} a bien été validée, pour un montant total de ${total}.<br />
+                        Elle vous sera livrée dès que possible à l'adresse suivante :<br />
+                        ${order.contact.address}<br />
+                        ${zip} ${order.contact.city}<br />
+                        Vous recevrez sous peu un mail de onfirmation à l'adresse ${order.contact.email}.<br />
+                        Nous vous remercions pour votre confiance.</p>`
+    
+    localStorage.clear();
+    localStorage.setItem("message", JSON.stringify(successMsg));
+    } else {
+    }
+};
+
+xhr.setRequestHeader("Content-type", "application/json");
+xhr.send(JSON.stringify(finalOrder));
+
+location.replace("../frontend/confirmation.html")
+    
+}
+

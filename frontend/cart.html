@@ -126,39 +126,39 @@
 
 
         <!-- Personal information form -->
-        <form class="container g-3 m-1 mb-4 p-4 bg-light rounded border" method="get" id="form1">
+        <form class="container g-3 m-1 mb-4 p-4 bg-light rounded border" method="get" id="form1" name="form" >
           <div class="row ml-4">
             <div class="col-lg-5 m-2">
               <label for="validationDefault01" class="form-label">Prénom</label>
-              <input type="text" name="firstName" class="form-control" id="validationDefault01" placeholder="Mark" required>
+              <input type="text" name="firstName" class="form-control" id="validationDefault01" value="Mark" required>
             </div>
             <div class="col-lg-5 m-2">
               <label for="validationDefault02" class="form-label">Nom</label>
-              <input type="text" class="form-control" id="validationDefault02" value="Otto" required>
+              <input type="text" name="lastName" class="form-control" id="validationDefault02" value="Otto" required>
             </div>
             <div class="col-lg-5 m-2">
               <label for="validationDefaultUsername" class="form-label">Adresse mail</label>
-              <input type="email" class="form-control" id="validationDefaultMail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" value="adresse@mail.fr" required>
+              <input type="email" name="email" class="form-control" id="validationDefaultMail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" value="adresse@mail.fr" required>
             </div>
             <div class="col-lg-5 m-2">
               <label for="validationDefaultUsername" class="form-label">Téléphone</label>
-              <input type="text" class="form-control" id="validationDefaultPhone" pattern="0[1-9][0-9]{8}" minlength="10" maxlength="10" value="0600000000" required>
+              <input type="text" name="phone" class="form-control" id="validationDefaultPhone" pattern="0[1-9][0-9]{8}" minlength="10" maxlength="10" value="0600000000" required>
             </div>
             <div class="col-lg-10 m-2 ml-3">
               <label for="validationDefault03" class="form-label">Adresse</label>
-              <input type="text" class="form-control" id="validationDefault03" value="1 rue de la Paix" required>
+              <input type="text" name="address" class="form-control" id="validationDefault03" value="1 rue de la Paix" required>
             </div>
             <div class="col-lg-7 m-2">
               <label for="validationDefault03" class="form-label">Ville</label>
-              <input type="text" class="form-control" id="validationDefault04" value="Albi" required>
+              <input type="text" name="city" class="form-control" id="validationDefault04" value="Albi" required>
             </div>
             <div class="col-lg-3 m-2">
               <label for="validationDefault05" class="form-label">Code Postal</label>
-              <input type="text" class="form-control" id="validationDefault05" pattern="[0-9]{5}" minlength="5" maxlength="5" value="81000" required>
+              <input type="text" name="zip" class="form-control" id="validationDefault05" pattern="[0-9]{5}" minlength="5" maxlength="5" value="81000" required>
             </div>
             <div class="col-12 m-2">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" checked required>
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
                 <label class="form-check-label" for="invalidCheck2">
                   J'ai lu et j'accepte les conditions d'achat.
                 </label>
@@ -208,7 +208,12 @@
             </div>
   
             <button type="submit" form="form1" class="btn btn-primary btn-block waves-effect waves-light confirm-btn" onclick="myFunc(event)">Confirmer</button>
-            
+            <div class="demo1"></div>
+            <div class="demo2"></div>
+            <div class="demo3"></div>
+            <div class="demo4"></div>
+            <div class="demo5"></div>
+            <div class="demo6"></div>
             
           </div>
         </div>
