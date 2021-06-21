@@ -320,7 +320,7 @@ function completeOrder() {
 
     /*POST*/
 
-    teddiesUrl = "http://localhost:3000/api/teddies/order";
+    teddiesUrl = "https://ocs-orinoco.herokuapp.com/api/teddies/order";
 
     let xhr = new XMLHttpRequest();
 
@@ -339,6 +339,13 @@ function completeOrder() {
                             Nous vous remercions pour votre confiance.</p>`
         
         localStorage.setItem("message", JSON.stringify(successMsg));
+
+        if(localStorage.getItem("message") === null) {
+            alert("ERROR")
+        } else {
+            location.replace("../frontend/confirmation.html")
+        }
+
         } else {
         }
     };
@@ -348,6 +355,6 @@ function completeOrder() {
 
     console.log(localStorage)
 
-    location.replace("../frontend/confirmation.html")
-
 }
+
+console.log(localStorage)
