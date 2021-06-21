@@ -6,4 +6,7 @@ document.getElementsByClassName("success-message")[0].innerHTML = message
 console.log(localStorage)
 console.log(message)
 
-localStorage.clear();
+window.onbeforeunload = function() {
+    localStorage.clear();
+    return '';
+  };
