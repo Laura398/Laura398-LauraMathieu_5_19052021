@@ -264,90 +264,90 @@ function validateForm() {
 
 function completeOrder() {
 
-let cartItemContainer = document.getElementsByClassName("cart-items")[0]
-let cartRows = cartItemContainer.getElementsByClassName("cart-row")
+    let cartItemContainer = document.getElementsByClassName("cart-items")[0]
+    let cartRows = cartItemContainer.getElementsByClassName("cart-row")
 
-let firstName = document.getElementById("validationDefault01").value
-let lastName = document.getElementById("validationDefault02").value
-let email = document.getElementById("validationDefaultMail").value
-let address = document.getElementById("validationDefault03").value
-let city = document.getElementById("validationDefault04").value
-let zipCode = document.getElementById("validationDefault05").value
-
-
-document.getElementsByClassName("demo1").innerHTML = firstName
-document.getElementsByClassName("demo2").innerHTML = lastName
-document.getElementsByClassName("demo3").innerHTML = email
-document.getElementsByClassName("demo4").innerHTML = address
-document.getElementsByClassName("demo5").innerHTML = city
-document.getElementsByClassName("demo6").innerHTML = zipCode
-
-let zip = document.getElementsByClassName("demo6").innerHTML
+    let firstName = document.getElementById("validationDefault01").value
+    let lastName = document.getElementById("validationDefault02").value
+    let email = document.getElementById("validationDefaultMail").value
+    let address = document.getElementById("validationDefault03").value
+    let city = document.getElementById("validationDefault04").value
+    let zipCode = document.getElementById("validationDefault05").value
 
 
-let contact = {
-    firstName: document.getElementsByClassName("demo1").innerHTML,
-    lastName: document.getElementsByClassName("demo2").innerHTML,
-    address: document.getElementsByClassName("demo4").innerHTML,
-    city: document.getElementsByClassName("demo5").innerHTML,
-    email: document.getElementsByClassName("demo3").innerHTML
-};
+    document.getElementsByClassName("demo1").innerHTML = firstName
+    document.getElementsByClassName("demo2").innerHTML = lastName
+    document.getElementsByClassName("demo3").innerHTML = email
+    document.getElementsByClassName("demo4").innerHTML = address
+    document.getElementsByClassName("demo5").innerHTML = city
+    document.getElementsByClassName("demo6").innerHTML = zipCode
+
+    let zip = document.getElementsByClassName("demo6").innerHTML
 
 
-let total = document.getElementsByClassName("cart-total")[0].innerText
+    let contact = {
+        firstName: document.getElementsByClassName("demo1").innerHTML,
+        lastName: document.getElementsByClassName("demo2").innerHTML,
+        address: document.getElementsByClassName("demo4").innerHTML,
+        city: document.getElementsByClassName("demo5").innerHTML,
+        email: document.getElementsByClassName("demo3").innerHTML
+    };
 
-let finalOrder = {};
-finalOrder.contact = contact;
-finalOrder.products = [];
-let joinedArrays = [];
-let valueArray = {};
+
+    let total = document.getElementsByClassName("cart-total")[0].innerText
+
+    let finalOrder = {};
+    finalOrder.contact = contact;
+    finalOrder.products = [];
+    let joinedArrays = [];
+    let valueArray = {};
 
 
-for (let i = 0; i < localStorage.length; i++) { /*get items from local storage depending on keys*/
-        let cartRow = cartRows[i]
-        let value = cartRow.getElementsByClassName("cart-number")[0].value
+    for (let i = 0; i < localStorage.length; i++) { /*get items from local storage depending on keys*/
+            let cartRow = cartRows[i]
+            let value = cartRow.getElementsByClassName("cart-number")[0].value
 
-        let cartItems = JSON.parse((localStorage.getItem(localStorage.key(i))));
-        JSON.parse(localStorage.getItem(cartItems));
+            let cartItems = JSON.parse((localStorage.getItem(localStorage.key(i))));
+            JSON.parse(localStorage.getItem(cartItems));
 
-        let integerValue = parseInt(value, 10); /*transforms value into a number*/
-        valueArray = Array(integerValue).fill(cartItems.id) /*duplicate id depending on value*/
-        joinedArrays.push(valueArray) /*1 array with an array for each id*/
-    
-}
-
-finalOrder.products = [].concat.apply([], joinedArrays); /*merge all arrays inside joindedArrays*/
-
-/*POST*/
-
-teddiesUrl = "http://localhost:3000/api/teddies/order";
-
-let xhr = new XMLHttpRequest();
-
-xhr.open("POST", teddiesUrl, true);
-
-xhr.onload = function () {
-
-    if (this.status == 201) {
-    let order = JSON.parse(this.responseText);
-    let successMsg = `<p class="text-center h5">Bonjour ${order.contact.firstName} ${order.contact.lastName},<br />
-                        Votre commande numéro ${order.orderId} a bien été validée, pour un montant total de ${total}.<br />
-                        Elle vous sera livrée dès que possible à l'adresse suivante :<br />
-                        ${order.contact.address}<br />
-                        ${zip} ${order.contact.city}<br />
-                        Vous recevrez sous peu un mail de confirmation à l'adresse ${order.contact.email}.<br />
-                        Nous vous remercions pour votre confiance.</p>`
-    
-    localStorage.setItem("message", JSON.stringify(successMsg));
-    } else {
+            let integerValue = parseInt(value, 10); /*transforms value into a number*/
+            valueArray = Array(integerValue).fill(cartItems.id) /*duplicate id depending on value*/
+            joinedArrays.push(valueArray) /*1 array with an array for each id*/
+        
     }
-};
 
-xhr.setRequestHeader("Content-type", "application/json");
-xhr.send(JSON.stringify(finalOrder));
+    finalOrder.products = [].concat.apply([], joinedArrays); /*merge all arrays inside joindedArrays*/
 
-console.log(localStorage)
+    /*POST*/
 
-location.replace("../frontend/confirmation.html")
+    teddiesUrl = "http://localhost:3000/api/teddies/order";
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST", teddiesUrl, true);
+
+    xhr.onload = function () {
+
+        if (this.status == 201) {
+        let order = JSON.parse(this.responseText);
+        let successMsg = `<p class="text-center h5">Bonjour ${order.contact.firstName} ${order.contact.lastName},<br />
+                            Votre commande numéro ${order.orderId} a bien été validée, pour un montant total de ${total}.<br />
+                            Elle vous sera livrée dès que possible à l'adresse suivante :<br />
+                            ${order.contact.address}<br />
+                            ${zip} ${order.contact.city}<br />
+                            Vous recevrez sous peu un mail de confirmation à l'adresse ${order.contact.email}.<br />
+                            Nous vous remercions pour votre confiance.</p>`
+        
+        localStorage.setItem("message", JSON.stringify(successMsg));
+        } else {
+        }
+    };
+
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send(JSON.stringify(finalOrder));
+
+    console.log(localStorage)
+
+    location.replace("../frontend/confirmation.html")
 
 }
