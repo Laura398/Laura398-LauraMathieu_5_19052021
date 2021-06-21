@@ -264,7 +264,7 @@ function validateForm() {
 
 function completeOrder() {
 
-    let cartItemContainer = document.getElementsByClassName("cart-items")[0]
+let cartItemContainer = document.getElementsByClassName("cart-items")[0]
 let cartRows = cartItemContainer.getElementsByClassName("cart-row")
 
 let firstName = document.getElementById("validationDefault01").value
@@ -335,10 +335,9 @@ xhr.onload = function () {
                         Elle vous sera livrée dès que possible à l'adresse suivante :<br />
                         ${order.contact.address}<br />
                         ${zip} ${order.contact.city}<br />
-                        Vous recevrez sous peu un mail de onfirmation à l'adresse ${order.contact.email}.<br />
+                        Vous recevrez sous peu un mail de confirmation à l'adresse ${order.contact.email}.<br />
                         Nous vous remercions pour votre confiance.</p>`
     
-    localStorage.clear();
     localStorage.setItem("message", JSON.stringify(successMsg));
     } else {
     }
@@ -347,7 +346,8 @@ xhr.onload = function () {
 xhr.setRequestHeader("Content-type", "application/json");
 xhr.send(JSON.stringify(finalOrder));
 
-location.replace("../frontend/confirmation.html")
-    
-}
+console.log(localStorage)
 
+location.replace("../frontend/confirmation.html")
+
+}

@@ -28,272 +28,245 @@
 
 <body>
 
-<div class="container bg-light p-2">
-    
+  <div class="container bg-light p-2">
+      
     <header>
 
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3E9F1;">
-            
-            <a href="index.html" title="Lien vers l'index"><figure><img src="img/logo.png" alt="Logo" class="navbar-brand rounded mt-2" /></figure></a>
-            
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse my-2 my-lg-0" id="navbarTogglerDemo02">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active m-3">
-                    <a class="nav-link" href="index.html" title="Lien vers l'index">Accueil<span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item m-3">
-                    <a class="nav-link" href="cart.html" title="Lien vers le panier">Panier</a>
-                </li>
-                </ul>
-            </div>
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3E9F1;">
+          
+          <a href="index.html" title="Lien vers l'index"><figure><img src="img/logo.png" alt="Logo" class="navbar-brand rounded mt-2" /></figure></a>
+          
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse my-2 my-lg-0" id="navbarTogglerDemo02">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <li class="nav-item active m-3">
+                  <a class="nav-link" href="index.html" title="Lien vers l'index">Accueil<span class="sr-only"></span></a>
+              </li>
+              <li class="nav-item m-3">
+                  <a class="nav-link" href="cart.html" title="Lien vers le panier">Panier</a>
+              </li>
+              </ul>
+          </div>
 
-        </nav>
+      </nav>
     
     </header>
 
     <main>
-        <section style="background-color: #F3E9F1;">
-            <div class="row bg-light mx-0">
-                <div class="col py-4">
-                    <h2 class="text-center my-2" id="message-produits">Voici les produits dans votre panier</h2>
-                </div>
+      <section style="background-color: #F3E9F1;">
+        <div class="row bg-light mx-0">
+            <div class="col py-4">
+                <h2 class="text-center my-2" id="message-produits">Voici les produits dans votre panier</h2>
             </div>
+        </div>
 
-            <div class="container px-4 px-lg-5 my-5" style="background-color: #F3E9F1;">
-                <div class="cart row gx-4 gx-lg-5 align-items-center">
-                    
+        <div class="container px-4 px-lg-5 my-5" style="background-color: #F3E9F1;">
+          <div class="cart row gx-4 gx-lg-5 align-items-center">
 
-                   
-
-
-                    <!--Section: Block Content-->
-<section>
-    <div class="row">
-      <div class="col-lg-8">
-  
-        <!-- Product Information -->
-        <div class="card wish-list mb-3 bg-light">
-          <div class="card-body cart-items">
-  
-            <h2 class="mb-4 h5" id="items-in-cart"></h2>
-            
-            <div class="row" id="cart-rows">
-              <template id="templateCartRow">
-                <div class="row mb-4 cart-row px-5">
-                  <div class="col-md-5 col-lg-3 col-xl-3">
-                    <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0" id="cart-img">
-                      <div id="cart-img"></div>
-                    </div>
-                  </div>
-                  <div class="col-md-7 col-lg-9 col-xl-9">
-                    <div>
-                      <div class="d-flex justify-content-between">
-                        <div>
-                          <h3 class="my-2 h5 cart-name" id="cart-name"></h3>
-                          <div class="small mb-1 d-none">ID: <span id="cart-id" class="cart-id">id</span></div>
-                          <p class="my-2 text-muted text-uppercase small">Couleur: <strong id="cart-color" class="cart-color"></strong></p>
-                        </div>
-                        <div>
-                          <div class="def-number-input number-input safari_only mb-0 w-100">
-                            
-                            <input class="quantity cart-number" id="cart-number" name="quantity" value="" min="1" max="9" type="number" style="-moz-appearance: textfield">
+            <!--Section: Block Content-->
+            <section>
+              <div class="row">
+                <div class="col-lg-8">
+                
+                  <!-- Product Information -->
+                  <div class="card wish-list mb-3 bg-light">
+                    <div class="card-body cart-items">
+                
+                      <h2 class="mb-4 h5" id="items-in-cart"></h2>
                           
+                      <div class="row" id="cart-rows">
+                        <template id="templateCartRow">
+                          <div class="row mb-4 cart-row px-5">
+                            <div class="col-md-5 col-lg-3 col-xl-3">
+                              <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                                <div id="cart-img"></div>
+                              </div>
+                            </div>
+                            <div class="col-md-7 col-lg-9 col-xl-9">
+                              <div>
+                                <div class="d-flex justify-content-between">
+                                  <div>
+                                    <h3 class="my-2 h5 cart-name" id="cart-name"></h3>
+                                    <div class="small mb-1 d-none">ID: <span id="cart-id" class="cart-id">id</span></div>
+                                    <p class="my-2 text-muted text-uppercase small">Couleur: <strong id="cart-color" class="cart-color"></strong></p>
+                                  </div>
+                                  <div>
+                                    <div class="def-number-input number-input safari_only mb-0 w-100">
+                                      <input class="quantity cart-number" id="cart-number" name="quantity" value="" min="1" max="9" type="number" style="-moz-appearance: textfield">
+                                    </div>
+                                  </div>
+                                </div>
+                                  <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                      <button class="btn-primary rounded remove-btn" type=button> Supprimer </button>
+                                    </div>
+                                    <p class="mb-0"><span><strong class="cart-price" id="cart-price"></strong></span></p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </template>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <!-- Personal information form -->
+                    <form class="container g-3 m-1 mb-4 p-4 bg-light rounded border" method="get" id="form1" name="form" >
+                      <div class="row ml-4">
+                        <div class="col-lg-5 m-2">
+                          <label for="validationDefault01" class="form-label">Prénom</label>
+                          <input type="text" name="firstName" class="form-control" id="validationDefault01" value="Mark" required>
+                        </div>
+                        <div class="col-lg-5 m-2">
+                          <label for="validationDefault02" class="form-label">Nom</label>
+                          <input type="text" name="lastName" class="form-control" id="validationDefault02" value="Otto" required>
+                        </div>
+                        <div class="col-lg-5 m-2">
+                          <label for="validationDefaultMail" class="form-label">Adresse mail</label>
+                          <input type="email" name="email" class="form-control" id="validationDefaultMail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" value="adresse@mail.fr" required>
+                        </div>
+                        <div class="col-lg-5 m-2">
+                          <label for="validationDefaultPhone" class="form-label">Téléphone</label>
+                          <input type="text" name="phone" class="form-control" id="validationDefaultPhone" pattern="0[1-9][0-9]{8}" minlength="10" maxlength="10" value="0600000000" required>
+                        </div>
+                        <div class="col-lg-10 m-2 ml-3">
+                          <label for="validationDefault03" class="form-label">Adresse</label>
+                          <input type="text" name="address" class="form-control" id="validationDefault03" value="1 rue de la Paix" required>
+                        </div>
+                        <div class="col-lg-7 m-2">
+                          <label for="validationDefault03" class="form-label">Ville</label>
+                          <input type="text" name="city" class="form-control" id="validationDefault04" value="Albi" required>
+                        </div>
+                        <div class="col-lg-3 m-2">
+                          <label for="validationDefault05" class="form-label">Code Postal</label>
+                          <input type="text" name="zip" class="form-control" id="validationDefault05" pattern="[0-9]{5}" minlength="5" maxlength="5" value="81000" required>
+                        </div>
+                        <div class="col-12 m-2">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                            <label class="form-check-label" for="invalidCheck2">
+                              J'ai lu et j'accepte les conditions d'achat.
+                            </label>
                           </div>
                         </div>
                       </div>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                          <button class="btn-primary rounded remove-btn" type=button> Supprimer </button>
-                        </div>
-                        <p class="mb-0"><span><strong class="cart-price" id="cart-price"></strong></span></p>
+                    </form>
+                
+                  </div>
+                  <!--Grid column-->
+                
+                  <!--Grid column-->
+                  <div class="col-lg-4">
+
+                    <!-- Payment information -->
+                    <div class="card mb-3 bg-light">
+                      <div class="card-body">
+                
+                        <h2 class="mb-4 h5">Nous acceptons :</h2>
+              
+                        <img class="mr-2" width="45"
+                          src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+                          alt="Visa">
+                        <img class="mr-2" width="45"
+                          src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
+                          alt="American Express">
+                        <img class="mr-2" width="45"
+                          src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
+                          alt="Mastercard">
+                        <img class="mr-2" width="45"
+                          src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg"
+                          alt="Paypal">
                       </div>
                     </div>
-                  </div>
+                
+                    <!-- Card -->
+                    <div class="card mb-3 bg-light">
+                      <div class="card-body">
+              
+                        <div class="row">
+                          <div class="col-6">
+                            <h5 class="mb-3">Total :</h5>
+                          </div>
+                          <div class="col-6 text-right">
+                            <strong class="cart-total">29,00€</strong>
+                          </div>
+                        </div>
+              
+                        <button type="submit" form="form1" class="btn btn-primary btn-block waves-effect waves-light confirm-btn" onclick="myFunc(event)">Confirmer</button>
+                        <div class="demo1"></div>
+                        <div class="demo2"></div>
+                        <div class="demo3"></div>
+                        <div class="demo4"></div>
+                        <div class="demo5"></div>
+                        <div class="demo6"></div>
+                        
+                      </div>
+                    </div>
+                    <!-- Card -->
+                
                 </div>
-
-                <hr class="mb-4">
-            
-              </template>
-            </div>
-
-
-          </div>
-        </div>
-
-
-        <!-- Personal information form -->
-        <form class="container g-3 m-1 mb-4 p-4 bg-light rounded border" method="get" id="form1" name="form" >
-          <div class="row ml-4">
-            <div class="col-lg-5 m-2">
-              <label for="validationDefault01" class="form-label">Prénom</label>
-              <input type="text" name="firstName" class="form-control" id="validationDefault01" value="Mark" required>
-            </div>
-            <div class="col-lg-5 m-2">
-              <label for="validationDefault02" class="form-label">Nom</label>
-              <input type="text" name="lastName" class="form-control" id="validationDefault02" value="Otto" required>
-            </div>
-            <div class="col-lg-5 m-2">
-              <label for="validationDefaultUsername" class="form-label">Adresse mail</label>
-              <input type="email" name="email" class="form-control" id="validationDefaultMail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" value="adresse@mail.fr" required>
-            </div>
-            <div class="col-lg-5 m-2">
-              <label for="validationDefaultUsername" class="form-label">Téléphone</label>
-              <input type="text" name="phone" class="form-control" id="validationDefaultPhone" pattern="0[1-9][0-9]{8}" minlength="10" maxlength="10" value="0600000000" required>
-            </div>
-            <div class="col-lg-10 m-2 ml-3">
-              <label for="validationDefault03" class="form-label">Adresse</label>
-              <input type="text" name="address" class="form-control" id="validationDefault03" value="1 rue de la Paix" required>
-            </div>
-            <div class="col-lg-7 m-2">
-              <label for="validationDefault03" class="form-label">Ville</label>
-              <input type="text" name="city" class="form-control" id="validationDefault04" value="Albi" required>
-            </div>
-            <div class="col-lg-3 m-2">
-              <label for="validationDefault05" class="form-label">Code Postal</label>
-              <input type="text" name="zip" class="form-control" id="validationDefault05" pattern="[0-9]{5}" minlength="5" maxlength="5" value="81000" required>
-            </div>
-            <div class="col-12 m-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-                <label class="form-check-label" for="invalidCheck2">
-                  J'ai lu et j'accepte les conditions d'achat.
-                </label>
+                    <!--Grid column-->
+                
               </div>
-            </div>
+                  <!--Grid row-->
+              
+                
+            </section>
+                <!--Section: Block Content-->
           </div>
-        </form>
-  
-      </div>
-      <!--Grid column-->
-  
-      <!--Grid column-->
-      <div class="col-lg-4">
 
-        <!-- Payment information -->
-        <div class="card mb-3 bg-light">
-          <div class="card-body">
-  
-            <h2 class="mb-4 h5">Nous acceptons :</h5>
-  
-            <img class="mr-2" width="45px"
-              src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
-              alt="Visa">
-            <img class="mr-2" width="45px"
-              src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
-              alt="American Express">
-            <img class="mr-2" width="45px"
-              src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
-              alt="Mastercard">
-            <img class="mr-2" width="45px"
-              src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg"
-              alt="Paypal">
-          </div>
         </div>
-  
-        <!-- Card -->
-        <div class="card mb-3 bg-light">
-          <div class="card-body">
-  
-            <div class="row">
-              <div class="col-6">
-                <h5 class="mb-3">Total :</h5>
-              </div>
-              <div class="col-6 text-right">
-                <strong class="cart-total">29,00€</strong>
-              </div>
-            </div>
-  
-            <button type="submit" form="form1" class="btn btn-primary btn-block waves-effect waves-light confirm-btn" onclick="myFunc(event)">Confirmer</button>
-            <div class="demo1"></div>
-            <div class="demo2"></div>
-            <div class="demo3"></div>
-            <div class="demo4"></div>
-            <div class="demo5"></div>
-            <div class="demo6"></div>
-            
-          </div>
-        </div>
-        <!-- Card -->
-  
-      </div>
-      <!--Grid column-->
-  
-    </div>
-    <!--Grid row-->
-  
-  </section>
-  <!--Section: Block Content-->
-
+      </section>
 
     </main>
 
     <footer class="bg-light text-center text-white">
-        <!-- Grid container -->
-        <div class="container p-4 pb-0">
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!-- Facebook -->
+          <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+      
+          <!-- Twitter -->
+          <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee;" href="#!" role="button">
+            <i class="fab fa-twitter"></i>
+          </a>
+    
+          <!-- Google -->
+          <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39;" href="#!" role="button">
+            <i class="fab fa-google"></i>
+          </a>
+    
+          <!-- Instagram -->
+          <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button">
+            <i class="fab fa-instagram"></i>
+          </a>
+      
+          <!-- Linkedin -->
+          <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca;" href="#!" role="button">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </section>
           <!-- Section: Social media -->
-          <section class="mb-4">
-            <!-- Facebook -->
-            <a
-              class="btn btn-primary btn-floating m-1"
-              style="background-color: #3b5998;"
-              href="#!"
-              role="button"
-              ><i class="fab fa-facebook-f"></i
-            ></a>
-      
-            <!-- Twitter -->
-            <a
-              class="btn btn-primary btn-floating m-1"
-              style="background-color: #55acee;"
-              href="#!"
-              role="button"
-              ><i class="fab fa-twitter"></i
-            ></a>
-      
-            <!-- Google -->
-            <a
-              class="btn btn-primary btn-floating m-1"
-              style="background-color: #dd4b39;"
-              href="#!"
-              role="button"
-              ><i class="fab fa-google"></i
-            ></a>
-      
-            <!-- Instagram -->
-            <a
-              class="btn btn-primary btn-floating m-1"
-              style="background-color: #ac2bac;"
-              href="#!"
-              role="button"
-              ><i class="fab fa-instagram"></i
-            ></a>
-      
-            <!-- Linkedin -->
-            <a
-              class="btn btn-primary btn-floating m-1"
-              style="background-color: #0082ca;"
-              href="#!"
-              role="button"
-              ><i class="fab fa-linkedin-in"></i
-            ></a>
-          </section>
-          <!-- Section: Social media -->
-        </div>
+      </div>
         <!-- Grid container -->
       
-        <!-- Copyright -->
-        <div class="text-center p-3 text-dark" style="background-color: #F3E9F1;">
-          © 2021 Copyright:
-          <a class="text-dark" href="https://mdbootstrap.com/">Orinoco</a>
-        </div>
-        <!-- Copyright -->
-      </footer>
+      <!-- Copyright -->
+      <div class="text-center p-3 text-dark" style="background-color: #F3E9F1;">
+        © 2021 Copyright:
+        <a class="text-dark" href="https://mdbootstrap.com/">Orinoco</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
 
-</div>
+  </div>
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -307,6 +280,7 @@
 <script src="js/index.js" ></script>
 <script src="js/products.js" ></script>
 <script src="js/cart.js" ></script>
+
 </body>
 
 </html>
