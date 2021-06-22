@@ -132,8 +132,6 @@ function addToCartClicked(event) { /*saving in local storage when article is add
     }
 }
 
-
-
 function displayCart() {
 
     for (let i = 0; i < localStorage.length; i++) { /*get les items depuis le local storage en fonction des keys*/
@@ -180,10 +178,8 @@ function updateLocalStorage() { /*update local storage when item removed from ca
 
     localStorage.clear();
     localStorage.setItem(readyToAdd, JSON.stringify(teddiesInCart)); /*add to local storage*/
-
-    
-}
-
+ 
+    }
 }
 
 function updateStorageQuantity() { /*update local storage when an item's quantity changes in cart*/
@@ -208,8 +204,8 @@ for(let i = 0; i < quantityInputs.length; i++) { /*Listening to input change for
     let readyToAdd = name + " " + chosenColor
 
     localStorage.setItem(readyToAdd, JSON.stringify(teddiesInCart)); /*add to local storage*/
-
-}}
+}
+}
 
 
 displayCart()
@@ -274,7 +270,6 @@ function completeOrder() {
     let city = document.getElementById("validationDefault04").value
     let zipCode = document.getElementById("validationDefault05").value
 
-
     document.getElementsByClassName("demo1").innerHTML = firstName
     document.getElementsByClassName("demo2").innerHTML = lastName
     document.getElementsByClassName("demo3").innerHTML = email
@@ -284,7 +279,6 @@ function completeOrder() {
 
     let zip = document.getElementsByClassName("demo6").innerHTML
 
-
     let contact = {
         firstName: document.getElementsByClassName("demo1").innerHTML,
         lastName: document.getElementsByClassName("demo2").innerHTML,
@@ -293,7 +287,6 @@ function completeOrder() {
         email: document.getElementsByClassName("demo3").innerHTML
     };
 
-
     let total = document.getElementsByClassName("cart-total")[0].innerText
 
     let finalOrder = {};
@@ -301,7 +294,6 @@ function completeOrder() {
     finalOrder.products = [];
     let joinedArrays = [];
     let valueArray = {};
-
 
     for (let i = 0; i < localStorage.length; i++) { /*get items from local storage depending on keys*/
             let cartRow = cartRows[i]
@@ -312,8 +304,7 @@ function completeOrder() {
 
             let integerValue = parseInt(value, 10); /*transforms value into a number*/
             valueArray = Array(integerValue).fill(cartItems.id) /*duplicate id depending on value*/
-            joinedArrays.push(valueArray) /*1 array with an array for each id*/
-        
+            joinedArrays.push(valueArray) /*1 array with an array for each id*/   
     }
 
     finalOrder.products = [].concat.apply([], joinedArrays); /*merge all arrays inside joindedArrays*/
@@ -340,11 +331,11 @@ function completeOrder() {
         
         localStorage.setItem("message", JSON.stringify(successMsg));
 
-        if(localStorage.getItem("message") === null) {
-            alert("ERROR")
-        } else {
-            location.replace("../frontend/confirmation.html")
-        }
+            if(localStorage.getItem("message") === null) {
+                alert("ERROR")
+            } else {
+                location.replace("../frontend/confirmation.html")
+            }
 
         } else {
         }

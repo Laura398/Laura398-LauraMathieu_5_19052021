@@ -3,7 +3,7 @@
 (async function() {
   const teddies = await getTeddies() /*Getting data from fetch - Will wait until function getTeddies is defined*/
   for (teddy of teddies) { /*Takes data from all teddies in API*/
-    displayTeddy(teddy) /*Displays data on screen*/
+    displayTeddies(teddy) /*Displays data on screen*/
   }
 })()
 
@@ -24,7 +24,7 @@ function getTeddies() {
 
 /*Display card parameters*/
 
-function displayTeddy(teddy) {
+function displayTeddies(teddy) {
   const templateCard = document.getElementById("templateCard") /*Select template in HTML doc*/
   const cloneCard = document.importNode(templateCard.content, true) /*Clone template*/
 
