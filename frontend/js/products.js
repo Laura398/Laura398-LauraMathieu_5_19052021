@@ -15,7 +15,7 @@
   }
   
   function getTeddyData(teddyId) {
-    return fetch(`https://ocs-orinoco.herokuapp.com/api/teddies/${teddyId}`)
+    return fetch(`http://localhost:3000/api/teddies/${teddyId}`)
       .then(async function(httpBodyResponse) {
         return httpBodyResponse.json()
       })
