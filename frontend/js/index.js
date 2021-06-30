@@ -10,7 +10,7 @@
 /*Fetching API*/
 
 function getTeddies() {
-  return fetch("http://localhost:3000/api/teddies") /*Fetching API*/
+  return fetch("https://ocs-orinoco.herokuapp.com/api/teddies") /*Fetching API*/
     .then(function(httpBodyResponse) { /*Transforming data in json*/
       return httpBodyResponse.json()
     })
