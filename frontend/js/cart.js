@@ -311,7 +311,7 @@ function completeOrder() {
 
     /*POST*/
 
-    teddiesUrl = "https://ocs-orinoco.herokuapp.com/api/teddies/order";
+    teddiesUrl = "https://localhost:3000/api/teddies/order";
 
     let xhr = new XMLHttpRequest();
 
